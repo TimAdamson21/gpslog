@@ -1,0 +1,22 @@
+[
+    {
+        "serial": "320f326b8bd1c07b",
+        "time": "2014-11-12 04:00:19.000000",
+        "latitude": "22.23",
+        "longitude": "-21.12",
+        "speed": "0",
+        "model": "Samsung Tab SM-T700",
+        "os": "Android 4.2.2",
+        "connection_type": "Wifi Only"
+    },
+    {
+        "serial": "32026g6b8bd1c07b",
+        "time": "2014-11-12 04:00:19.000000",
+        "latitude": "-21.12",
+        "longitude": "92.23",
+        "speed": ".7",
+        "model": "Samsung Tab SM-T330NU",
+        "os": "Android 4.4.2",
+        "connection_type": "Wifi Only"
+    }
+]
