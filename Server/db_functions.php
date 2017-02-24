@@ -3,6 +3,7 @@
 class DB_Functions {
 
     private $gpsdata;
+    private $con;
 
     //put your code here
     // constructor
@@ -10,7 +11,7 @@ class DB_Functions {
         include_once './db_connect.php';
         // connecting to database
         $this->gpsdata = new DB_Connect();
-        $this->gpsdata->connect();
+        $this->con = $this->gpsdata->connect();
     }
 
     // destructor
@@ -22,18 +23,22 @@ class DB_Functions {
      */
 	}
 
+    public function getConnection(){
+        return $this->con;
+    }
+
     public function storeDevice( $serial_number, $model = '', $os = '', $connection_type = '' )
     {
         $query = "INSERT INTO `devices` (`serial_number`, `model`, `os`, `connection_type`) "
                 . " VALUES ('{$serial_number}', '{$model}','{$os}','{$connection_type}' )";
         echo '<p>New Device query:'.$query.'</p>';
-        $result = mysqli_query($query);
+        $result = mysqli_query($this->con, $query);
         if ($result) {
-            return mysqli_insert_id();
-            echo "Successful storage of device data";
+            echo "Successful storage of device data", PHP_EOL;
+            return mysqli_insert_id($this->con);
         } else {
-            return false;
             echo "Failed to store device data";
+            return false;
         }
     }
 
@@ -42,9 +47,9 @@ class DB_Functions {
         $query = "INSERT INTO `gpslog` (`device_id`, `created_at`, `latitude`, `longitude`, `speed`) "
                 . " VALUES ({$device_id}, '{$created_at}','{$latitude}','{$longitude}', '{$speed}' )";
         echo '<p>New Gpsdata query:'.$query.'</p>';
-        $result = mysqli_query($query);
+        $result = mysqli_query($this->con, $query);
         if ($result) {
-            return mysqli_insert_id();
+            return mysqli_insert_id($this->con);
         } else {
             return false;
         }
@@ -53,7 +58,7 @@ class DB_Functions {
      * Getting all users
      */
     public function getAllUsers() {
-        $result = mysqli_query("select * FROM gpslog");
+        $result = mysqli_query($this->con, "select * FROM gpslog");
         return $result;
     }
 }

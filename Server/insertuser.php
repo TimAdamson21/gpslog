@@ -2,20 +2,21 @@
 include_once './db_functions.php';
 //Create Object for DB_Functions class
 $db = new DB_Functions();
+
 //Get JSON posted by Android Application
-//$json = $_POST["usersJSON"];
+$json = $_POST["usersJSON"];
 
 //Remove Slashes
 if (get_magic_quotes_gpc()){
 $json = stripslashes($json);
 }
 //Decode JSON into an Array
-$devicesData = json_decode(file_get_contents("data.json"), true);
+$devicesData = json_decode($json, true);
 //echo '<p>devices data <pre>'; var_dump($devicesData); echo '</pre></p>';
 foreach($devicesData as $data )
 {
-    $device_query = mysql_query( "SELECT `id` FROM devices WHERE `serial_number`='". $data['serial'] . "'" );
-    $existing_device = mysql_fetch_array($device_query);
+    $device_query = mysqli_query($db->getConnection(),"SELECT `id` FROM devices WHERE `serial_number`='". $data['serial'] . "'" );
+    $existing_device = mysqli_fetch_array($device_query);
     if ( $existing_device )
     {
         echo '<p>got device with row id#'. $existing_device['id'];
@@ -31,7 +32,9 @@ foreach($devicesData as $data )
     }
     else
     {
-        $newdevice_id = $db->storeDevice( $data['serial'], $data['model'], $data['os'], $data['connection_type'] );
+        print("Attempting to create a new device \n");
+        $newdevice_id = $db->storeDevice( $data['serial'], $data['model'], $data['os'], $data['connection_type'] ); //Adds the device, and returns an sql id, or false
+        print("The new device ID is $newdevice_id");
         if ( $newdevice_id  )
         {
             echo '<p>'.$newdevice_id.' add new device  gps data to gpslog table</p>';
@@ -57,11 +60,11 @@ $serial = (string)$data[0]["serial"];
 
 //  output $serial to make sure it is the correct serial #
 
-$result = mysql_query("SELECT `id` FROM devices WHERE `serial_number`= '{$serial}'");
+$result = mysqli_query("SELECT `id` FROM devices WHERE `serial_number`= '{$serial}'");
 if($result === FALSE) {
-    die(mysql_error()); // TODO: better error handling
+    die(mysqli_error()); // TODO: better error handling
 	}
-	//while ($Device = mysql_fetch_array($result));
+	//while ($Device = mysqli_fetch_array($result));
 		if ($Device):
 		{
 			for($i=0; $i<count($data) ; $i++)

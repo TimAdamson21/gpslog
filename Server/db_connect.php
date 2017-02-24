@@ -16,9 +16,11 @@ class DB_Connect {
     public function connect() {
         require_once 'config.php';
         // connecting to mysql
-        $con = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
-        // selecting database
-        mysqli_select_db($con, DB_DATABASE);
+
+        $con = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD,DB_DATABASE, DB_PORT);
+        if (!$con) {
+            die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
+        }
  
         // return database handler
         echo "Host information: " . mysqli_get_host_info($con) . PHP_EOL;
@@ -28,15 +30,18 @@ class DB_Connect {
  
     // Closing database connection
     public function close() {
-        mysql_close();
+        mysqli_close();
     }
  
 } 
 
 $gpsdata = new DB_Connect();
 $my_con = $gpsdata->connect();  
-$query = "SELECT * from gpslog";
+$query = "SELECT * from devices";
 $result = mysqli_query($my_con, $query);
+if(!$result){
+    print("The database you attemped to access does not exist"); //Give some info about failure
+}
 echo $result->num_rows;
 
 ?>
