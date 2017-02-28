@@ -31,10 +31,10 @@ class DB_Functions {
     {
         $query = "INSERT INTO `devices` (`serial_number`, `model`, `os`, `connection_type`) "
                 . " VALUES ('{$serial_number}', '{$model}','{$os}','{$connection_type}' )";
-        echo '<p>New Device query:'.$query.'</p>';
+        ////echo '<p>New Device query:'.$query.'</p>';
         $result = mysqli_query($this->con, $query);
         if ($result) {
-            echo "Successful storage of device data", PHP_EOL;
+            ////echo "Successful storage of device data", PHP_EOL;
             return mysqli_insert_id($this->con);
         } else {
             echo "Failed to store device data";
@@ -46,7 +46,7 @@ class DB_Functions {
 
         $query = "INSERT INTO `gpslog` (`device_id`, `created_at`, `latitude`, `longitude`, `speed`) "
                 . " VALUES ({$device_id}, '{$created_at}','{$latitude}','{$longitude}', '{$speed}' )";
-        echo '<p>New Gpsdata query:'.$query.'</p>';
+        ////echo '<p>New Gpsdata query:'.$query.'</p>';
         $result = mysqli_query($this->con, $query);
         if ($result) {
             return mysqli_insert_id($this->con);

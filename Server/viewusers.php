@@ -42,7 +42,7 @@
         ?> 
 
         <tr>
-          <td><span><?php echo $row["Id"] ?></span></td>
+          <td><span><?php echo $row["id"] ?></span></td>
           <td><span><?php echo $row["Name"] ?></span></td>
         </tr>
 

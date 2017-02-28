@@ -23,7 +23,7 @@ class DB_Connect {
         }
  
         // return database handler
-        echo "Host information: " . mysqli_get_host_info($con) . PHP_EOL;
+        ////echo "Host information: " . mysqli_get_host_info($con) . PHP_EOL;
 
         return $con;
     }
@@ -35,13 +35,5 @@ class DB_Connect {
  
 } 
 
-$gpsdata = new DB_Connect();
-$my_con = $gpsdata->connect();  
-$query = "SELECT * from devices";
-$result = mysqli_query($my_con, $query);
-if(!$result){
-    print("The database you attemped to access does not exist"); //Give some info about failure
-}
-echo $result->num_rows;
 
 ?>
