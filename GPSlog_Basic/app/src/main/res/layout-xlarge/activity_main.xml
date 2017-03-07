@@ -36,10 +36,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="43dp"
         android:clickable="true"
-        android:hint="Set the Classification Time Interval" /><![CDATA[
-
- 
-    ]]>
+        android:hint="Set the Classification Time Interval" /><![CDATA[]]>
 
     <Button
         android:id="@+id/syncButton"
@@ -52,6 +49,19 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="18dp" />
+
+    <Button
+        android:id="@+id/mapsButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="@string/mapsButton"
+        android:textSize="30sp"
+        android:typeface="monospace"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/syncButton"
+        android:layout_marginTop="18dp"
+        />
 
 
 </RelativeLayout>

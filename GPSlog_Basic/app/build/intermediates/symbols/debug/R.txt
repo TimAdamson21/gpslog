@@ -248,7 +248,7 @@ int id action_context_bar 0x7f0b001d
 int id action_menu_divider 0x7f0b0001
 int id action_menu_presenter 0x7f0b0002
 int id action_mode_close_button 0x7f0b0024
-int id action_settings 0x7f0b0040
+int id action_settings 0x7f0b0041
 int id activity_chooser_view_content 0x7f0b0025
 int id always 0x7f0b0013
 int id beginning 0x7f0b000f
@@ -269,6 +269,7 @@ int id ifRoom 0x7f0b0015
 int id image 0x7f0b0027
 int id listMode 0x7f0b0006
 int id list_item 0x7f0b0029
+int id mapsButton 0x7f0b0040
 int id middle 0x7f0b0011
 int id never 0x7f0b0016
 int id none 0x7f0b0012
@@ -345,9 +346,10 @@ int string abc_shareactionprovider_share_with_application 0x7f05000c
 int string action_settings 0x7f05000d
 int string app_name 0x7f05000e
 int string hello_world 0x7f05000f
-int string startButton 0x7f050010
-int string stopButton 0x7f050011
-int string syncbutton 0x7f050012
+int string mapsButton 0x7f050010
+int string startButton 0x7f050011
+int string stopButton 0x7f050012
+int string syncbutton 0x7f050013
 int style AppBaseTheme 0x7f080002
 int style AppTheme 0x7f080042
 int style TextAppearance_AppCompat_Base_CompactMenu_Dialog 0x7f080043

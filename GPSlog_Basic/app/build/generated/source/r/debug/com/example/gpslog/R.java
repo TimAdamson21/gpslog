@@ -829,7 +829,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f0b0001;
         public static final int action_menu_presenter=0x7f0b0002;
         public static final int action_mode_close_button=0x7f0b0024;
-        public static final int action_settings=0x7f0b0040;
+        public static final int action_settings=0x7f0b0041;
         public static final int activity_chooser_view_content=0x7f0b0025;
         public static final int always=0x7f0b0013;
         public static final int beginning=0x7f0b000f;
@@ -850,6 +850,7 @@ containing a value of this type.
         public static final int image=0x7f0b0027;
         public static final int listMode=0x7f0b0006;
         public static final int list_item=0x7f0b0029;
+        public static final int mapsButton=0x7f0b0040;
         public static final int middle=0x7f0b0011;
         public static final int never=0x7f0b0016;
         public static final int none=0x7f0b0012;
@@ -934,22 +935,16 @@ containing a value of this type.
         public static final int action_settings=0x7f05000d;
         public static final int app_name=0x7f05000e;
         public static final int hello_world=0x7f05000f;
-        public static final int startButton=0x7f050010;
-        public static final int stopButton=0x7f050011;
-        public static final int syncbutton=0x7f050012;
+        public static final int mapsButton=0x7f050010;
+        public static final int startButton=0x7f050011;
+        public static final int stopButton=0x7f050012;
+        public static final int syncbutton=0x7f050013;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 
  API 14 theme customizations can go here. 
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
          */
         public static final int AppBaseTheme=0x7f080002;
-        /**  All customizations that are NOT specific to a particular API-level can go here. 
-         */
         public static final int AppTheme=0x7f080042;
         public static final int TextAppearance_AppCompat_Base_CompactMenu_Dialog=0x7f080043;
         public static final int TextAppearance_AppCompat_Base_SearchResult=0x7f080044;

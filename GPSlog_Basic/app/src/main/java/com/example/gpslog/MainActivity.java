@@ -79,20 +79,6 @@ public class MainActivity extends Activity {
 
                 mylocman.removeUpdates(myloclist);
 
-/*				List<Track> tracks = db.getAllTracks();
-
-				Iterator<Track> iter = tracks.iterator();
-
-				while (iter.hasNext()) {
-					Track track = iter.next();
-
-					Toast.makeText(
-							getApplicationContext(),
-							"Latitude - > " + track.latitude + " Longitude "
-									+ track.longitude + " time" + track.time,
-							Toast.LENGTH_LONG).show();
-				}*/
-
                 Intent dbmanager = new Intent(getApplicationContext(), AndroidDatabaseManager.class);
                 startActivity(dbmanager);
             }
@@ -134,8 +120,6 @@ public class MainActivity extends Activity {
     public class MylocListener implements LocationListener {
         @SuppressLint("NewApi")
         public void onLocationChanged(Location loc) {
-            // TODO Auto-generated method stub
-            String text = " My location is  Latitude =" + loc.getLatitude() + " Longitude =" + loc.getLongitude() + " Speed =" + loc.getSpeed();
             lat = loc.getLatitude() + "";
             log = loc.getLongitude() + "";
             speed = loc.getSpeed() + "";

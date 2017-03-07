@@ -5,9 +5,9 @@
     density="hdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="2790416992942086"
+    timestamp="3241473284306104"
     token="8796635832668240122"
-    verifier="FULL_BUILD_REQUESTED" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
@@ -23,15 +23,29 @@
         duration="0" />
 
     <artifact
-        location="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\outputs\apk\app-debug.apk"
-        type="MAIN" />
+        location="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
+        type="RESOURCES" />
 
     <build
-        timestamp="2790416992942086"
+        timestamp="3238864820840259"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\outputs\apk\app-debug.apk"
+            location="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
+    </build>
+    <build
+        timestamp="3240686163604340"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_5\classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="3241473284306104"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
+            type="RESOURCES" />
     </build>
 
 </instant-run>

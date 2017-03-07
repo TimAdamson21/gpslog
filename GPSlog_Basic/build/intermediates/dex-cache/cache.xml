@@ -3,66 +3,57 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\jars\classes.jar"
+        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="9cbbbf4eac063688ddf18f4b5e8c2f16c228289e">
+        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_95ff5759ef7297c76159f11cee898827ce720ab2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef">
-        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-20.0.0_298033e23667bfed2ede03511244934f9e9ba2c1\classes.dex" />
+        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-20.0.0_1273c31560d2284529cbccf00036306d32a6e424\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\libs\xml.jar"
+        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="1fa1723903c8e278b235125896c70c40914e8d56">
+        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_3ffaf38978087416a78c1dadad05e831d5a5ec7e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\libs\xml.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="1abd6871b65d6bf9ee174147810bad2417a26ab5">
-        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\2\xml_d8f9fd213bcf1e4cee6414377bcb7662de3df6eb\classes.dex" />
+        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\2\xml_b533a10c6c3f3b2fe932d7007a1d400694a0946d\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="d9b5e105b118e61c5e9a8771ae73345ad9140d0b">
-        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_2f63ce8cfaf7235eecde6e17a5d95aaf2488614d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="cf285f61baeee160fe65465d248aadea13bd66d6">
-        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_9eb827a89b3ddc81ba78043fafd4923ee508dec7\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\jars\libs\internal_impl-20.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d">
-        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-20.0.0_78f5b218859c3c1f13bef1427f96346676b2d3d8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\libs\hmmlib.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="e261cb74acb3eb5bd9d5415b9a71417534193d3a">
-        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\2\hmmlib_9bbc60ff3c86e159ae643bee9a26cabb78662497\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\libs\xml4j_1_1_9.jar"
+        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\libs\xml4j_1_1_9.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="77072ea8dd9680c01108882fa4aa857a287e4f75">
-        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\2\xml4j_1_1_9_5ff7a26b2f96c559556dded1a0452d6656aff2f3\classes.dex" />
+        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\2\xml4j_1_1_9_3d9216bb1320997d5e5d22d411f026f02b9a9529\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\libs\android-async-http-1.4.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="3bae85a076241828810bf8fbcc12e5891d5fc34c">
+        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\2\android-async-http-1.4.4_aeab872d75e1a28e9ffe8718ec99c74404549833\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -71,16 +62,25 @@
         optimize="true"
         revision="23.0.3"
         sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
-        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.3.1_e4a42c754bcbe20eaa7b9ac0da9445f60ee1daa7\classes.dex" />
+        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.3.1_e4a42c754bcbe20eaa7b9ac0da9445f60ee1daa7\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\libs\android-async-http-1.4.4.jar"
+        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="3bae85a076241828810bf8fbcc12e5891d5fc34c">
-        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\2\android-async-http-1.4.4_695efcc79ad6ac5fbd2d83d79a26ef9a1dd0c2e7\classes.dex" />
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0">
+        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-20.0.0_bab7ade604ecd5e4740ae0def3ffe288fc8b6c4f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\jars\libs\internal_impl-20.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d">
+        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-20.0.0_226a9a7b79d083ee03f3b63df4b87ea486cb446a\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -89,16 +89,16 @@
         optimize="true"
         revision="23.0.3"
         sha1="9d9013e9ff35fc3756411e62873c363c70c638fa">
-        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-20.0.0_0418116494ac32ab635d3444a6ec418bc0f6b860\classes.dex" />
+        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-20.0.0_0418116494ac32ab635d3444a6ec418bc0f6b860\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\jars\classes.jar"
+        jar="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\libs\hmmlib.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="8694693636ab36910c8100ce527c258ff3ebece0">
-        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlogNEW_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-20.0.0_bd71b969823051b286d2851b5e9d13d0b1c7f3f8\classes.dex" />
+        sha1="e261cb74acb3eb5bd9d5415b9a71417534193d3a">
+        <dex dex="C:\Users\timad\Documents\Transportation Research\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\2\hmmlib_dffe237e7d918c2b7e03592be0f878ec8ba1e9b3\classes.dex" />
     </item>
 
 </items>

@@ -1,7 +1,7 @@
-#Mon Feb 27 16:42:53 PST 2017
-base.0=C\:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlogNEW_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_2f63ce8cfaf7235eecde6e17a5d95aaf2488614d
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=C\:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlogNEW_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_9eb827a89b3ddc81ba78043fafd4923ee508dec7\\classes.dex
-base.1=C\:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlogNEW_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_9eb827a89b3ddc81ba78043fafd4923ee508dec7
-file.0=C\:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlogNEW_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_2f63ce8cfaf7235eecde6e17a5d95aaf2488614d\\classes.dex
+#Sat Mar 04 22:04:37 PST 2017
+base.0=C\:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_3ffaf38978087416a78c1dadad05e831d5a5ec7e
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_95ff5759ef7297c76159f11cee898827ce720ab2\\classes.dex
+base.1=C\:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_95ff5759ef7297c76159f11cee898827ce720ab2
+file.0=C\:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_3ffaf38978087416a78c1dadad05e831d5a5ec7e\\classes.dex

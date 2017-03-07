@@ -7,5 +7,6 @@
     <string name="startButton">START</string>
     <string name="stopButton">VIEW</string>
     <string name="syncbutton">SYNC</string>
+    <string name="mapsButton">SEE POINTS</string>
 
 </resources>
