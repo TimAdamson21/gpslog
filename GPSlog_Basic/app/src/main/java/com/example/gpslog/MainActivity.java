@@ -34,18 +34,22 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 
+
 @SuppressLint("NewApi")
 public class MainActivity extends Activity {
 
     Button startButton;
     Button stopButton;
     Button syncButton;
+    Button mapsButton;
+
     String lat = "";
     String log = "";
     String speed = "";
     //String tag = "";
     //Integer dcrtspd = "";//TODO: double check the "String"
     DatabaseHandler db = null;
+    HMMClassifier classifier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +59,12 @@ public class MainActivity extends Activity {
 
         db = new DatabaseHandler(this);
 
+        classifier = new HMMClassifier();
+
         startButton = (Button) findViewById(R.id.startButton);
         stopButton = (Button) findViewById(R.id.stopButton);
         syncButton = (Button) findViewById(R.id.syncButton);
+        mapsButton = (Button) findViewById(R.id.mapsButton);
 
         final LocationManager mylocman = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         final LocationListener myloclist = new MylocListener();
@@ -88,11 +95,18 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-
                 syncSQLiteMySQLDB();
-
             }
         });
+
+        mapsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent map = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(map);
+            }
+        });
+
 
     }
 
@@ -126,7 +140,7 @@ public class MainActivity extends Activity {
             //tag = null;
             String time = getCurrentTime();
             //Integer dcrtspd = getDiscrtSpeed();
-            db.insertRow(time, loc.getLatitude(), loc.getLongitude(), loc.getSpeed(), android.os.Build.SERIAL);
+            db.insertRow(time, loc.getLatitude(), loc.getLongitude(), loc.getSpeed(), android.os.Build.SERIAL, classifier.classify(loc.getSpeed()));
             Message("Data Inserted  Latitude:  " + lat + " Longitude: " + log + " Speed: " + speed + " Serial " + android.os.Build.SERIAL + "time: " + time);
 
             //updateDatabase();
@@ -161,7 +175,7 @@ public class MainActivity extends Activity {
                         //Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
                         try {
                             JSONArray arr = new JSONArray(response);
-                            System.out.println(arr.length());
+                            System.out.println("The length of the response is " + arr.length());
                             for (int i = 0; i < arr.length(); i++) {
                                 JSONObject obj = (JSONObject) arr.get(i);
                                 System.out.println(obj.get("time"));

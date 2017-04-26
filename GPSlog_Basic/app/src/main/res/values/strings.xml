@@ -8,5 +8,6 @@
     <string name="stopButton">VIEW</string>
     <string name="syncbutton">SYNC</string>
     <string name="mapsButton">SEE POINTS</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

@@ -1,7 +1,7 @@
-#Sat Mar 04 22:04:37 PST 2017
-base.0=C\:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_3ffaf38978087416a78c1dadad05e831d5a5ec7e
+#Tue Apr 25 14:13:58 PDT 2017
+base.0=C\:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_d01281c9323fd69dd67438d30f3e17f209f649b5
 renamed.1=classes2.dex
 renamed.0=classes.dex
-file.1=C\:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_95ff5759ef7297c76159f11cee898827ce720ab2\\classes.dex
-base.1=C\:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_95ff5759ef7297c76159f11cee898827ce720ab2
-file.0=C\:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_3ffaf38978087416a78c1dadad05e831d5a5ec7e\\classes.dex
+file.1=C\:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_114af453b9fe4c993c67e2db757034b8eb9e59b8\\classes.dex
+base.1=C\:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_114af453b9fe4c993c67e2db757034b8eb9e59b8
+file.0=C\:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_d01281c9323fd69dd67438d30f3e17f209f649b5\\classes.dex

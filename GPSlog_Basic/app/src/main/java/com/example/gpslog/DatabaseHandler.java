@@ -35,7 +35,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         		"longitude REAL," +
         		"speed REAL,"+
         		"updateStatus TEXT," +
-        		"serial TEXT)";
+        		"serial TEXT," +
+                "hiddenState REAL)";
         db.execSQL(CREATE_TRACKS_TABLE);
 		
 	}
@@ -45,8 +46,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS tracks");
         onCreate(db);
 	}
+
 	
-	public void insertRow(String time, Double latitude, Double longitude, Float speed, String serial) {
+	public void insertRow(String time, Double latitude, Double longitude, Float speed, String serial, int state) {
 		SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("time", time);
@@ -55,6 +57,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("speed", speed);
         values.put("updateStatus", "no");
         values.put("serial", serial);
+        values.put("hiddenState", state);
         
         db.insert("tracks", null, values);
         db.close(); 
@@ -67,16 +70,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         
-        System.out.println("lskfajsd;lkfjaslkdfjalskdfjsldkdfjl----------------" + cursor.getCount());
- 
         if (cursor.moveToFirst()) {
             do {
                 Track track = new Track();
-                track.time = cursor.getString(0);
-                track.latitude = Double.parseDouble(cursor.getString(1));
-                track.longitude = Double.parseDouble(cursor.getString(2));
-                //track.speed = Float.parseFloat(cursor.getString(3));
-                //track.serial = cursor.getString(4);
+                track.time = cursor.getString(3);
+                track.latitude = Double.parseDouble(cursor.getString(0));
+                track.longitude = Double.parseDouble(cursor.getString(1));
+                track.speed = Float.parseFloat(cursor.getString(2));
+               // track.serial = cursor.getString(4);
                 trackList.add(track);
             } while (cursor.moveToNext());
         }
@@ -160,8 +161,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				map.put("longitude", cursor.getString(2));
 				map.put("speed", cursor.getString(3));
 				map.put("serial", cursor.getString(5));
+                map.put("hidden_state", cursor.getString(6));
 				
-				System.out.print( "inside JSON file first data " + cursor.getString(0) + " Second data " + cursor.getString(1) + " third data " + cursor.getString(2) + " fourth data " + cursor.getString(3)+ " fifth data" + cursor.getString(4));
+				//System.out.print( "inside JSON file first data " + cursor.getString(0) + " Second data " + cursor.getString(1) + " third data " + cursor.getString(2) + " fourth data " + cursor.getString(3)+ " fifth data" + cursor.getString(4));
                 trackList.add(map);
             } while (cursor.moveToNext());
         }
@@ -183,7 +185,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         count = cursor.getCount();
         database.close();
         return count;
-    }
+    } //TODO Improve method to use SELECT COUNT(*)
     
     /**
      * Update Sync status against each User ID
@@ -195,20 +197,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         database.execSQL(updateQuery);
         database.close();
     }
-    
-    /**
-     * Get Sync status of SQLite
-     * @return
-     */
-    public String getSyncStatus(){
-        String msg = null;
-        if(this.dbSyncCount() == 0){
-            msg = "SQLite and Remote MySQL DBs are in Sync!";
-        }else{
-            msg = "DB Sync needed\n";
-        }
-        return msg;
-    }
+
     /** NEW <==
      * Get SQLite records that are yet to be Tagged
      * @return

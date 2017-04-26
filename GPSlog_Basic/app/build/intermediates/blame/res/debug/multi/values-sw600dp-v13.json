@@ -1,23 +1,23 @@
 [
     {
-        "outputFile": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlogNEW_Basic\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+        "outputFile": "C:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
         "map": [
             {
                 "to": {
                     "startLine": 2,
                     "startColumn": 4,
                     "startOffset": 55,
-                    "endColumn": 61,
-                    "endOffset": 112
+                    "endColumn": 68,
+                    "endOffset": 119
                 },
                 "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlogNEW_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
+                    "file": "C:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
-                        "startLine": 3,
+                        "startLine": 2,
                         "startColumn": 4,
-                        "startOffset": 56,
-                        "endColumn": 61,
-                        "endOffset": 113
+                        "startOffset": 55,
+                        "endColumn": 68,
+                        "endOffset": 119
                     }
                 }
             },
@@ -25,175 +25,18 @@
                 "to": {
                     "startLine": 3,
                     "startColumn": 4,
-                    "startOffset": 117,
-                    "endColumn": 67,
-                    "endOffset": 180
-                },
-                "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlogNEW_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 118,
-                        "endColumn": 67,
-                        "endOffset": 181
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 185,
+                    "startOffset": 124,
                     "endColumn": 68,
-                    "endOffset": 249
+                    "endOffset": 188
                 },
                 "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlogNEW_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 186,
-                        "endColumn": 68,
-                        "endOffset": 250
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 254,
-                    "endColumn": 64,
-                    "endOffset": 314
-                },
-                "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlogNEW_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 255,
-                        "endColumn": 64,
-                        "endOffset": 315
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 319,
-                    "endColumn": 65,
-                    "endOffset": 380
-                },
-                "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlogNEW_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 320,
-                        "endColumn": 65,
-                        "endOffset": 381
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 385,
-                    "endColumn": 61,
-                    "endOffset": 442
-                },
-                "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlogNEW_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 386,
-                        "endColumn": 61,
-                        "endOffset": 443
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 447,
-                    "endColumn": 58,
-                    "endOffset": 501
-                },
-                "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlogNEW_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 448,
-                        "endColumn": 58,
-                        "endOffset": 502
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 506,
-                    "endColumn": 54,
-                    "endOffset": 556
-                },
-                "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlogNEW_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 508,
-                        "endColumn": 54,
-                        "endOffset": 558
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 61,
-                    "endOffset": 112
-                },
-                "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
+                    "file": "C:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
-                        "startOffset": 56,
-                        "endColumn": 61,
-                        "endOffset": 113
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 117,
-                    "endColumn": 67,
-                    "endOffset": 180
-                },
-                "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 118,
-                        "endColumn": 67,
-                        "endOffset": 181
+                        "startOffset": 124,
+                        "endColumn": 68,
+                        "endOffset": 188
                     }
                 }
             },
@@ -201,18 +44,18 @@
                 "to": {
                     "startLine": 4,
                     "startColumn": 4,
-                    "startOffset": 185,
-                    "endColumn": 68,
-                    "endOffset": 249
+                    "startOffset": 193,
+                    "endColumn": 69,
+                    "endOffset": 258
                 },
                 "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
+                    "file": "C:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
-                        "startLine": 5,
+                        "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 186,
-                        "endColumn": 68,
-                        "endOffset": 250
+                        "startOffset": 193,
+                        "endColumn": 69,
+                        "endOffset": 258
                     }
                 }
             },
@@ -220,18 +63,18 @@
                 "to": {
                     "startLine": 5,
                     "startColumn": 4,
-                    "startOffset": 254,
-                    "endColumn": 64,
-                    "endOffset": 314
+                    "startOffset": 263,
+                    "endColumn": 73,
+                    "endOffset": 332
                 },
                 "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
+                    "file": "C:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
-                        "startLine": 6,
+                        "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 255,
-                        "endColumn": 64,
-                        "endOffset": 315
+                        "startOffset": 263,
+                        "endColumn": 73,
+                        "endOffset": 332
                     }
                 }
             },
@@ -239,18 +82,18 @@
                 "to": {
                     "startLine": 6,
                     "startColumn": 4,
-                    "startOffset": 319,
-                    "endColumn": 65,
-                    "endOffset": 380
+                    "startOffset": 337,
+                    "endColumn": 75,
+                    "endOffset": 408
                 },
                 "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
+                    "file": "C:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
-                        "startLine": 7,
+                        "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 320,
-                        "endColumn": 65,
-                        "endOffset": 381
+                        "startOffset": 337,
+                        "endColumn": 75,
+                        "endOffset": 408
                     }
                 }
             },
@@ -258,18 +101,18 @@
                 "to": {
                     "startLine": 7,
                     "startColumn": 4,
-                    "startOffset": 385,
-                    "endColumn": 61,
-                    "endOffset": 442
+                    "startOffset": 413,
+                    "endColumn": 58,
+                    "endOffset": 467
                 },
                 "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
+                    "file": "C:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
-                        "startLine": 8,
+                        "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 386,
-                        "endColumn": 61,
-                        "endOffset": 443
+                        "startOffset": 413,
+                        "endColumn": 58,
+                        "endOffset": 467
                     }
                 }
             },
@@ -277,18 +120,18 @@
                 "to": {
                     "startLine": 8,
                     "startColumn": 4,
-                    "startOffset": 447,
-                    "endColumn": 58,
-                    "endOffset": 501
+                    "startOffset": 472,
+                    "endColumn": 70,
+                    "endOffset": 538
                 },
                 "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
+                    "file": "C:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
-                        "startLine": 9,
+                        "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 448,
-                        "endColumn": 58,
-                        "endOffset": 502
+                        "startOffset": 472,
+                        "endColumn": 70,
+                        "endOffset": 538
                     }
                 }
             },
@@ -296,18 +139,56 @@
                 "to": {
                     "startLine": 9,
                     "startColumn": 4,
-                    "startOffset": 506,
-                    "endColumn": 54,
-                    "endOffset": 556
+                    "startOffset": 543,
+                    "endColumn": 67,
+                    "endOffset": 606
                 },
                 "from": {
-                    "file": "C:\\Users\\timad\\Documents\\Transportation Research\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\20.0.0\\res\\values-sw600dp\\values.xml",
+                    "file": "C:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
-                        "startLine": 11,
+                        "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 508,
-                        "endColumn": 54,
-                        "endOffset": 558
+                        "startOffset": 543,
+                        "endColumn": 67,
+                        "endOffset": 606
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 611,
+                    "endColumn": 68,
+                    "endOffset": 675
+                },
+                "from": {
+                    "file": "C:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 68,
+                        "endOffset": 119
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 680,
+                    "endColumn": 68,
+                    "endOffset": 744
+                },
+                "from": {
+                    "file": "C:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 124,
+                        "endColumn": 68,
+                        "endOffset": 188
                     }
                 }
             }

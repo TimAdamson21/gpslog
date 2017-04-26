@@ -13,7 +13,7 @@
     <Button
         android:id="@+id/startButton"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:text="@string/startButton"
         android:textAppearance="@style/AppTheme"
         android:textSize="30sp"
