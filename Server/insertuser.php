@@ -18,7 +18,7 @@ $devicesData = json_decode($json,true); //This is for android
 
 function addData($id,$data){
     global $db, $jsonResponse;
-    $newgpslog_id = $db->storeData( $id, $data['time'], $data['latitude'], $data['longitude'], $data['speed'] );
+    $newgpslog_id = $db->storeData( $id, $data['time'], $data['latitude'], $data['longitude'], $data['speed'], $data['hidden_state'] );
         if ( $newgpslog_id )
         {
             ////echo '<p>gps data added:'.$newgpslog_id.'</p>';
@@ -32,7 +32,9 @@ function addData($id,$data){
         }
         else
         {
-            ////echo '<p>Failed to add gpslog data</p>';
+            echo '<p>Failed to add gpslog data</p>';
+            print("The data that we tried to use was ");
+            var_dump($data);
         }
 }
 
@@ -49,9 +51,9 @@ foreach($devicesData as $data )
     }
     else
     {
-        print("Attempting to create a new device \n");
+        ////print("Attempting to create a new device \n");
         $newdevice_id = $db->storeDevice( $data['serial'], $data['model'], $data['os'], $data['connection_type'] ); //Adds the device, and returns an sql id, or false
-        print("The new device ID is $newdevice_id");
+        ////print("The new device ID is $newdevice_id");
         if ( $newdevice_id  ) //If new device successfully created
         {
             ////echo '<p>'.$newdevice_id.' add new device  gps data to gpslog table</p>';
