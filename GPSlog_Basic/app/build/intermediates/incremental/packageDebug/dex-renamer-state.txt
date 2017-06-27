@@ -1,4 +1,4 @@
-#Tue Apr 25 14:13:58 PDT 2017
+#Thu Jun 22 12:48:55 PDT 2017
 base.0=C\:\\Users\\timad\\Documents\\GPSlogNew_Basic\\GPSlog_Basic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_d01281c9323fd69dd67438d30f3e17f209f649b5
 renamed.1=classes2.dex
 renamed.0=classes.dex

@@ -5,29 +5,29 @@
     density="hdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="325751525130442"
+    timestamp="334583651456019"
     token="3698580309802581553"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="1108" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="831" />
     <task
         name="verifier"
-        duration="0" />
+        duration="277" />
 
     <artifact
         location="C:\Users\timad\Documents\GPSlogNew_Basic\GPSlog_Basic\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="362585371740696"
+        timestamp="334583651456019"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Users\timad\Documents\GPSlogNew_Basic\GPSlog_Basic\app\build\outputs\apk\app-debug.apk"

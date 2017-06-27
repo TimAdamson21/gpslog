@@ -35,17 +35,17 @@ public class HMMClassifier implements Serializable, XmlParserList{
         // Set Model Parameters:
 
         // Set the Prior Vector pi
-        node.setPi(0, 0); node.setPi(1, 0); node.setPi(2, 1);
+        node.setPi(0, 1); node.setPi(1, 0); node.setPi(2, 0);
 
         // Set the Transition Probabilities A
-        node.setA(0, 0, 0.840); node.setA(0, 1, 0.080); node.setA(0, 2, 0.080);
-        node.setA(1, 0, 0.011); node.setA(1, 1, 0.989); node.setA(1, 2, 0);
-        node.setA(2, 0, 0.035); node.setA(2, 1, 0); node.setA(2, 2, 0.965);
+        node.setA(0, 0, 0.923076923); node.setA(0, 1, 0.019230763); node.setA(0, 2, 0.057692314);
+        node.setA(1, 0, 1.15E-35); node.setA(1, 1, 0.983050844); node.setA(1, 2, 0.016949156);
+        node.setA(2, 0, 0.040200996); node.setA(2, 1, 0.030150754); node.setA(2, 2, 0.92964825);
 
         // Set the Emission Probabilities B
-        node.setB(0, 0, 0); node.setB(0, 1, 1); node.setB(0, 2, 0);
-        node.setB(1, 0, 0); node.setB(1, 1, 0); node.setB(1, 2, 1);
-        node.setB(2, 0, 1); node.setB(2, 1, 0); node.setB(2, 2, 0);
+        node.setB(0, 0, 1); node.setB(0, 1, 0); node.setB(0, 2, 0);
+        node.setB(1, 0, 0); node.setB(1, 1, 1); node.setB(1, 2, 0);
+        node.setB(2, 0, 0); node.setB(2, 1, 0); node.setB(2, 2, 1);
 
         hmm.setModel(node);
 
@@ -71,7 +71,7 @@ public class HMMClassifier implements Serializable, XmlParserList{
         hmm.setObSeq(getDiscrtSpeedArray(db));
     }
 
-    public int classify(float speed){
+    public int getHiddenState(float speed){
         int[] speedArray = new int[1];
 
         int DiscritizedSpeed = getDiscrtSpeed(speed);

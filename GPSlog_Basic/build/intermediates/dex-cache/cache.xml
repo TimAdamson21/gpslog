@@ -61,7 +61,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="17cf243733efcc7b315d3833ed2cc7269974beb8">
+        sha1="803123cdbacbd830ce81569197527b535855cfec">
         <dex dex="C:\Users\timad\Documents\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_d01281c9323fd69dd67438d30f3e17f209f649b5\classes.dex" />
     </item>
     <item
@@ -322,7 +322,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="e4ba072523c6b65664396902f9cb759f4a5f7a6d">
+        sha1="7b619f18042488a667556c83206add6a30000a15">
         <dex dex="C:\Users\timad\Documents\GPSlogNew_Basic\GPSlog_Basic\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_114af453b9fe4c993c67e2db757034b8eb9e59b8\classes.dex" />
     </item>
     <item

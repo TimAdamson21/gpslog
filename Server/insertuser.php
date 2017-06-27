@@ -18,7 +18,7 @@ $devicesData = json_decode($json,true); //This is for android
 
 function addData($id,$data){
     global $db, $jsonResponse;
-    $newgpslog_id = $db->storeData( $id, $data['time'], $data['latitude'], $data['longitude'], $data['speed'], $data['hidden_state'] );
+    $newgpslog_id = $db->storeData( $id, $data['time'], $data['latitude'], $data['longitude'], $data['speed'], $data['hidden_state'], $data['toSend'] );
         if ( $newgpslog_id )
         {
             ////echo '<p>gps data added:'.$newgpslog_id.'</p>';
@@ -32,7 +32,7 @@ function addData($id,$data){
         }
         else
         {
-            echo '<p>Failed to add gpslog data</p>';
+            echo '<p>Failed to add gpslog data</p>'; //Debugging statements to find out what went wrong.
             print("The data that we tried to use was ");
             var_dump($data);
         }

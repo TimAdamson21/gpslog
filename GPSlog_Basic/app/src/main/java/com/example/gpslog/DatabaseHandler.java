@@ -31,15 +31,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
         String CREATE_TRACKS_TABLE = "CREATE TABLE tracks (" +
         		"time TEXT ," +
-        		"latitude REAL," +
-        		"longitude REAL," +
+        		"latitude TEXT," +
+        		"longitude TEXT," +
         		"speed REAL,"+
         		"updateStatus TEXT," +
         		"serial TEXT," +
-                "hiddenState REAL)";
+                "hiddenState REAL" +
+                "toSend REAL"+
+                ")";
         db.execSQL(CREATE_TRACKS_TABLE);
 		
 	}
+
+    public void OnCreateWithStandardDatabase(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String CREATE_TRACKS_TABLE = "CREATE TABLE tracks (" +
+                "time TEXT ," +
+                "latitude TEXT," +
+                "longitude TEXT," +
+                "speed REAL,"+
+                "updateStatus TEXT," +
+                "serial TEXT," +
+                "hiddenState REAL" +
+                "toSend REAL"+
+                ")";
+        db.execSQL(CREATE_TRACKS_TABLE);
+    }
+
+
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -47,8 +66,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
 	}
 
-	
-	public void insertRow(String time, Double latitude, Double longitude, Float speed, String serial, int state) {
+    public void addColumn(String tableName, String colName, String type){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String ADD_COLUMN = "ALTER TABLE " + tableName + " ADD " +colName + " " + type;
+        db.execSQL(ADD_COLUMN);
+    }
+
+	public void insertRow(String time, Double latitude, Double longitude, Float speed, String serial, int state, int toSend) {
 		SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("time", time);
@@ -58,14 +82,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("updateStatus", "no");
         values.put("serial", serial);
         values.put("hiddenState", state);
+        values.put("toSend", toSend);
         
         db.insert("tracks", null, values);
         db.close(); 
 	}
 
+    public void setToSend(String time, int toSend){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String CHANGE_TIME = "UPDATE tracks" +
+                " SET toSend = " + toSend +
+                " WHERE time = '" + time +"';";
+        db.execSQL(CHANGE_TIME);
+    }
+
+    public int getLastHiddenState(){
+        String selectQuery = "SELECT hiddenState FROM tracks ORDER BY time DESC LIMIT 1";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        return 0;
+
+    }
+
 	public List<Track> getAllTracks() {
 	    List<Track> trackList = new ArrayList<Track>();
-        String selectQuery = "SELECT latitude, longitude, speed, time FROM tracks";
+        String selectQuery = "SELECT latitude, longitude, speed, time, hiddenState, toSend FROM tracks";
  
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -77,6 +119,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 track.latitude = Double.parseDouble(cursor.getString(0));
                 track.longitude = Double.parseDouble(cursor.getString(1));
                 track.speed = Float.parseFloat(cursor.getString(2));
+                track.hiddenState = Integer.parseInt(cursor.getString(4));
+                track.realTimeToSend = Integer.parseInt(cursor.getString(5));
                // track.serial = cursor.getString(4);
                 trackList.add(track);
             } while (cursor.moveToNext());
@@ -162,6 +206,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				map.put("speed", cursor.getString(3));
 				map.put("serial", cursor.getString(5));
                 map.put("hidden_state", cursor.getString(6));
+                map.put("toSend", cursor.getString(7));
 				
 				//System.out.print( "inside JSON file first data " + cursor.getString(0) + " Second data " + cursor.getString(1) + " third data " + cursor.getString(2) + " fourth data " + cursor.getString(3)+ " fifth data" + cursor.getString(4));
                 trackList.add(map);

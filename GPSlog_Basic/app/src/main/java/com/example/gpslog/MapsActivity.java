@@ -7,6 +7,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -47,7 +48,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         for (Track track: userList) {
-            mMap.addMarker(new MarkerOptions().position(new LatLng(track.latitude,track.longitude)).title(track.time));
+            float color = BitmapDescriptorFactory.HUE_RED;
+            float opacity = 1.0f;
+            if(track.hiddenState == 1){
+                color = BitmapDescriptorFactory.HUE_YELLOW;
+            } else if(track.hiddenState == 2){
+                color = BitmapDescriptorFactory.HUE_GREEN;
+            }
+
+            if(track.realTimeToSend == 0){
+                opacity = 0.25f;
+            }
+
+            mMap.addMarker(new MarkerOptions().position(new LatLng(track.latitude,track.longitude)).
+                    title(track.time).alpha(opacity).icon(BitmapDescriptorFactory.defaultMarker(color)));
+
         }
         Track lastTrack = userList.get(userList.size()-1);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lastTrack.latitude,lastTrack.longitude),zoomLevel));

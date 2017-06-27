@@ -5,5 +5,7 @@ public class Track {
 	double latitude;
 	double longitude;
 	double speed;
+	int hiddenState;
 	String serial;
+	int realTimeToSend;
 }

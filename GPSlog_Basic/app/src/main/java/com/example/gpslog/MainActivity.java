@@ -34,13 +34,16 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 
-
 @SuppressLint("NewApi")
 public class MainActivity extends Activity {
+
+    final int FALSE = 0;
+    final int TRUE = 1;
 
     Button startButton;
     Button stopButton;
     Button syncButton;
+    Button filterButton;
     Button mapsButton;
 
     String lat = "";
@@ -50,6 +53,7 @@ public class MainActivity extends Activity {
     //Integer dcrtspd = "";//TODO: double check the "String"
     DatabaseHandler db = null;
     HMMClassifier classifier;
+    int lastHiddenState = 3; //It starts at 3 so that the first data point will always send
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,7 @@ public class MainActivity extends Activity {
         startButton = (Button) findViewById(R.id.startButton);
         stopButton = (Button) findViewById(R.id.stopButton);
         syncButton = (Button) findViewById(R.id.syncButton);
+        filterButton = (Button) findViewById(R.id.filterButton);
         mapsButton = (Button) findViewById(R.id.mapsButton);
 
         final LocationManager mylocman = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -99,14 +104,27 @@ public class MainActivity extends Activity {
             }
         });
 
-        mapsButton.setOnClickListener(new View.OnClickListener() {
+        filterButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                Intent map = new Intent(getApplicationContext(), MapsActivity.class);
-                startActivity(map);
+                filterPoints();
             }
         });
 
+        mapsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<Track> tracks =(ArrayList)db.getAllTracks();
+                if(tracks.size() > 0) {
+                    Intent map = new Intent(getApplicationContext(), MapsActivity.class);
+                    startActivity(map);
+                }
+                else{
+                    Message("No data points to view");
+                }
+            }
+        });
 
     }
 
@@ -139,11 +157,12 @@ public class MainActivity extends Activity {
             speed = loc.getSpeed() + "";
             //tag = null;
             String time = getCurrentTime();
-            //Integer dcrtspd = getDiscrtSpeed();
-            db.insertRow(time, loc.getLatitude(), loc.getLongitude(), loc.getSpeed(), android.os.Build.SERIAL, classifier.classify(loc.getSpeed()));
+            int hiddenState = classifier.getHiddenState(loc.getSpeed());
+            int toSend = determineToSend(lastHiddenState, hiddenState, time);
+            lastHiddenState = hiddenState;
+            db.insertRow(time, loc.getLatitude(), loc.getLongitude(), loc.getSpeed(), android.os.Build.SERIAL, hiddenState, toSend);
             Message("Data Inserted  Latitude:  " + lat + " Longitude: " + log + " Speed: " + speed + " Serial " + android.os.Build.SERIAL + "time: " + time);
 
-            //updateDatabase();
         }
 
         public void onProviderDisabled(String provider) {
@@ -157,6 +176,20 @@ public class MainActivity extends Activity {
         public void onStatusChanged(String provider, int status, Bundle extras) {
             // TODO Auto-generated method stub
         }
+    }
+
+    private int determineToSend(int lastHiddenState, int hiddenState, String time) {
+        int toSend;
+        char lastChar = time.charAt(time.length() - 1);
+        if(lastHiddenState == 0 && hiddenState == 0){
+            toSend = FALSE;
+        } else if(lastHiddenState == 2 && hiddenState == 2 && ( lastChar != '0')){
+            toSend = FALSE;
+        }
+        else{
+            toSend = TRUE;
+        }
+        return toSend;
     }
 
     public void syncSQLiteMySQLDB() {
@@ -215,6 +248,27 @@ public class MainActivity extends Activity {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    private void filterPoints(){
+        System.out.println("We are filtering the points");
+        ArrayList<Track> tracks =(ArrayList)db.getAllTracks();
+        db.setToSend(tracks.get(0).time, 1);
+        for(int i = 1; i < tracks.size(); i++){
+            Track currTrack = tracks.get(i);
+            int currHiddenState = currTrack.hiddenState;
+            int prevHiddenState = tracks.get(i-1).hiddenState;
+            int toSend;
+            char lastChar = currTrack.time.charAt(currTrack.time.length() - 1);
+            if(prevHiddenState == 0 && currHiddenState == 0){
+               toSend = FALSE;
+            } else if(prevHiddenState == 2 && currHiddenState == 2 && ( lastChar != '0')){
+               toSend = FALSE;
+            }
+            else{
+                toSend = TRUE;
+            }
+            db.setToSend(currTrack.time, toSend);
+        }
+    }
     /*
      * Getting the current date time format
      */
@@ -227,17 +281,4 @@ public class MainActivity extends Activity {
         return time;
     }
 
-/*    public Integer getDiscrtSpeed(Double speed) {
-        int dcrtspd = 0;
-
-        if (speed <= 1.34112) {    //  3 mph = 1.34112 m/s
-            dcrtspd = 0;
-        } else if (speed >= 8.9408) {        // 20 mph = 8.9408 m/s
-            dcrtspd = 2;
-        } else {
-            dcrtspd = 1;
-        }
-        return dcrtspd;
-    }
-    */
 }

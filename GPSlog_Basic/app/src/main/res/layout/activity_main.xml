@@ -10,6 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.gpslog.MainActivity" >
 
+
     <Button
         android:id="@+id/startButton"
         android:layout_width="match_parent"
@@ -21,21 +22,7 @@
         android:typeface="monospace"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="41dp" />
-
-
-    <Button
-        android:id="@+id/syncButton"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="@string/syncbutton"
-        android:textSize="30sp"
-        android:typeface="monospace"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="127dp" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/stopButton"
@@ -46,18 +33,45 @@
         android:typeface="monospace"
         android:clickable="true"
         android:hint="Set the Classification Time Interval"
-        android:layout_above="@+id/syncButton"
+        android:layout_below="@+id/startButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="97dp" />
+        android:layout_marginTop="23dp" />
+
+    <Button
+        android:id="@+id/filterButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="@string/filterButton"
+        android:textSize="30sp"
+        android:typeface="monospace"
+        android:layout_marginBottom="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/syncButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="@string/syncbutton"
+        android:textSize="30sp"
+        android:typeface="monospace"
+        android:layout_marginBottom="37dp"
+        android:layout_above="@+id/filterButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/mapsButton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="60dp"
         android:text="@string/mapsButton"
         android:textSize="30sp"
         android:typeface="monospace"
-        />
+        android:layout_above="@+id/syncButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="50dp" />
 
 </RelativeLayout>
