@@ -10,5 +10,6 @@
     <string name="filterButton">FilterPoints</string>
     <string name="mapsButton">SEE POINTS ON MAP</string>
     <string name="title_activity_maps">Map</string>
+    <string name="svm_classify">Classify Stop and Go</string>
 
 </resources>

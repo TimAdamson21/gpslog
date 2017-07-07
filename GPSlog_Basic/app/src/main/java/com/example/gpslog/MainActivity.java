@@ -45,6 +45,7 @@ public class MainActivity extends Activity {
     Button syncButton;
     Button filterButton;
     Button mapsButton;
+    Button svmButton;
 
     String lat = "";
     String log = "";
@@ -52,7 +53,8 @@ public class MainActivity extends Activity {
     //String tag = "";
     //Integer dcrtspd = "";//TODO: double check the "String"
     DatabaseHandler db = null;
-    HMMClassifier classifier;
+    HMMClassifier hmmClassifier;
+    SVMClassifier svmClassifier;
     int lastHiddenState = 3; //It starts at 3 so that the first data point will always send
 
     @Override
@@ -63,13 +65,15 @@ public class MainActivity extends Activity {
 
         db = new DatabaseHandler(this);
 
-        classifier = new HMMClassifier();
+        hmmClassifier = new HMMClassifier();
+        svmClassifier = new SVMClassifier(db);
 
         startButton = (Button) findViewById(R.id.startButton);
         stopButton = (Button) findViewById(R.id.stopButton);
         syncButton = (Button) findViewById(R.id.syncButton);
         filterButton = (Button) findViewById(R.id.filterButton);
         mapsButton = (Button) findViewById(R.id.mapsButton);
+        svmButton = (Button) findViewById(R.id.svmButton);
 
         final LocationManager mylocman = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         final LocationListener myloclist = new MylocListener();
@@ -126,6 +130,14 @@ public class MainActivity extends Activity {
             }
         });
 
+        svmButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                svmClassifier.classifyStopAndGo();
+            }
+        });
+
     }
 
 
@@ -157,7 +169,7 @@ public class MainActivity extends Activity {
             speed = loc.getSpeed() + "";
             //tag = null;
             String time = getCurrentTime();
-            int hiddenState = classifier.getHiddenState(loc.getSpeed());
+            int hiddenState = hmmClassifier.getHiddenState(loc.getSpeed());
             int toSend = determineToSend(lastHiddenState, hiddenState, time);
             lastHiddenState = hiddenState;
             db.insertRow(time, loc.getLatitude(), loc.getLongitude(), loc.getSpeed(), android.os.Build.SERIAL, hiddenState, toSend);

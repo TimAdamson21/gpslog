@@ -76,5 +76,16 @@
         android:layout_marginTop="18dp"
         />
 
+    <Button
+        android:id="@+id/svmButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="@string/svm_classify"
+        android:textSize="30sp"
+        android:typeface="monospace"
+        android:layout_below="@+id/mapsButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp" />
 
 </RelativeLayout>
