@@ -6,6 +6,8 @@ package com.example.gpslog;
 
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import libsvm.*;
 
 public class SVMClassifier {
@@ -21,14 +23,14 @@ public class SVMClassifier {
         model = new svm_model();
 
         param.kernel_type = svm_parameter.POLY;
-        param.svm_type = null;
+        //param.svm_type = null;
         param.degree = 10;
-        param.gamma = null;
-        param.coef0 = null;
+        //param.gamma = null;
+        //param.coef0 = null;
 
         model.param = param;
-        model.nr_class = null;
-        model.l = null;
+        //model.nr_class = null;
+        //model.l = null;
         model.SV = null;
         model.sv_coef = null;
         model.rho = null;
@@ -39,8 +41,31 @@ public class SVMClassifier {
     }
 
     public void classifyStopAndGo(){
+        ArrayList<Segment> segments = getSegments();
+    }
 
-        System.out.println("Soooo classified");
+    private ArrayList<Segment> getSegments(){
+        ArrayList<Track> tracks= (ArrayList<Track>)dbh.getAllTracks();
+        ArrayList<Segment> segments = new ArrayList<>();
+        boolean isSegment = false;
+        ArrayList<Track> segTracks = new ArrayList<>();
+        for(int i = 1; i < tracks.size(); i++){
+            if(tracks.get(i - 1).hiddenState == HMMClassifier.FREEFLOW &&
+                    tracks.get(i).hiddenState == HMMClassifier.ACCELERATION){
+                isSegment = true;
+            }
+            else if(isSegment && tracks.get(i).hiddenState == HMMClassifier.FREEFLOW){
+                isSegment = false;
+                segments.add(new Segment(segTracks));
+                segTracks.clear();
+
+            }
+            if(isSegment){
+                segTracks.add(tracks.get(i));
+            }
+
+        }
+        return segments;
     }
 
 }

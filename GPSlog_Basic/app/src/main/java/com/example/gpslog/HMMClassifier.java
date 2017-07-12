@@ -28,6 +28,7 @@ public class HMMClassifier implements Serializable, XmlParserList{
 
     Hmm hmm;
 
+
     // The HMMVlassifier constructor builds a model and creates an Hmm object from that model
     public HMMClassifier(){
         Model node = new Model(3,3, true);		//An hmm model named node is generated here
@@ -99,5 +100,8 @@ public class HMMClassifier implements Serializable, XmlParserList{
         return dcrtspd;
     }
 
+    public static final int ACCELERATION = 1;
+    public static final int FREEFLOW = 2;
+    public static final int STOPPED = 0;
 
 }

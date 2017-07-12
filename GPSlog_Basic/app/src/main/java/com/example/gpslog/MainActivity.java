@@ -193,10 +193,11 @@ public class MainActivity extends Activity {
     private int determineToSend(int lastHiddenState, int hiddenState, String time) {
         int toSend;
         char lastChar = time.charAt(time.length() - 1);
-        if(lastHiddenState == 0 && hiddenState == 0){
+        if(lastHiddenState == HMMClassifier.STOPPED && hiddenState == HMMClassifier.STOPPED){
             toSend = FALSE;
-        } else if(lastHiddenState == 2 && hiddenState == 2 && ( lastChar != '0')){
-            toSend = FALSE;
+        } else if(lastHiddenState == HMMClassifier.FREEFLOW &&
+                hiddenState == HMMClassifier.FREEFLOW && ( lastChar != '0')){ //Used to only
+            toSend = FALSE;                                         // send 1 in ten freeflow
         }
         else{
             toSend = TRUE;
@@ -268,16 +269,8 @@ public class MainActivity extends Activity {
             Track currTrack = tracks.get(i);
             int currHiddenState = currTrack.hiddenState;
             int prevHiddenState = tracks.get(i-1).hiddenState;
-            int toSend;
-            char lastChar = currTrack.time.charAt(currTrack.time.length() - 1);
-            if(prevHiddenState == 0 && currHiddenState == 0){
-               toSend = FALSE;
-            } else if(prevHiddenState == 2 && currHiddenState == 2 && ( lastChar != '0')){
-               toSend = FALSE;
-            }
-            else{
-                toSend = TRUE;
-            }
+            String time = currTrack.time;
+            int toSend = determineToSend(prevHiddenState, currHiddenState, time);
             db.setToSend(currTrack.time, toSend);
         }
     }
