@@ -36,8 +36,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         		"speed REAL,"+
         		"updateStatus TEXT," +
         		"serial TEXT," +
-                "hiddenState REAL" +
-                "toSend REAL"+
+                "hiddenState REAL," +
+                "toSend REAL," +
+                "TripID INTEGER" +
                 ")";
         db.execSQL(CREATE_TRACKS_TABLE);
 		
@@ -45,17 +46,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public void OnCreateWithStandardDatabase(){
         SQLiteDatabase db = this.getWritableDatabase();
-        String CREATE_TRACKS_TABLE = "CREATE TABLE tracks (" +
-                "time TEXT ," +
-                "latitude TEXT," +
-                "longitude TEXT," +
-                "speed REAL,"+
-                "updateStatus TEXT," +
-                "serial TEXT," +
-                "hiddenState REAL" +
-                "toSend REAL"+
-                ")";
-        db.execSQL(CREATE_TRACKS_TABLE);
+        onCreate(db);
     }
 
 
@@ -66,15 +57,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
 	}
 
+    public void standardOnUpgrade() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        onUpgrade(db, 0, 0);
+    }
+
     public void addColumn(String tableName, String colName, String type){
         SQLiteDatabase db = this.getWritableDatabase();
         String ADD_COLUMN = "ALTER TABLE " + tableName + " ADD " +colName + " " + type;
-        db.execSQL(ADD_COLUMN);
-    }
-
-    public void removeColumn(String tableName, String colName){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String ADD_COLUMN = "ALTER TABLE " + tableName + " DROP " +colName + ";";
         db.execSQL(ADD_COLUMN);
     }
 

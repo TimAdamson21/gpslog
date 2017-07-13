@@ -86,8 +86,6 @@ public class MainActivity extends Activity {
                     case UNSTARTED:
                         startButton.setText(R.string.waiting_to_start);
                         startStatus = WAITINGFORDATA;
-                        //db.removeColumn("tracks","TableId");
-                        //db.addColumn("tracks","TripID","INTEGER");
                         mylocman.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, myloclist);
                         break;
                     case WAITINGFORDATA:
@@ -174,8 +172,9 @@ public class MainActivity extends Activity {
             int hiddenState = hmmClassifier.getHiddenState(loc.getSpeed());
             int toSend = determineToSend(lastHiddenState, hiddenState, time);
             lastHiddenState = hiddenState;
+            long tripID = 0;
             db.insertRow(time, loc.getLatitude(), loc.getLongitude(),
-                    loc.getSpeed(), android.os.Build.SERIAL, hiddenState, toSend);
+                    loc.getSpeed(), android.os.Build.SERIAL, hiddenState, toSend, tripID);
             Message("Data Inserted  Latitude:  " + lat + " Longitude: " + log + " Speed: " + speed + " Serial " + android.os.Build.SERIAL + "time: " + time);
 
             startButton.setText(R.string.started);
