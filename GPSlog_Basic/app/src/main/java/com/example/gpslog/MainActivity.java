@@ -86,8 +86,8 @@ public class MainActivity extends Activity {
                     case UNSTARTED:
                         startButton.setText(R.string.waiting_to_start);
                         startStatus = WAITINGFORDATA;
-                        db.removeColumn("tracks","TableId");
-                        db.addColumn("tracks","TripID","INTEGER");
+                        //db.removeColumn("tracks","TableId");
+                        //db.addColumn("tracks","TripID","INTEGER");
                         mylocman.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, myloclist);
                         break;
                     case WAITINGFORDATA:
