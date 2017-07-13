@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="xml">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/xml.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

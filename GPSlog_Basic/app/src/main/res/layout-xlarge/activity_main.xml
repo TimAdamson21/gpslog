@@ -13,7 +13,7 @@
     <Button
         android:id="@+id/startButton"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:text="@string/startButton"
         android:textAppearance="@style/AppTheme"
         android:textSize="30sp"
@@ -27,7 +27,7 @@
     <Button
         android:id="@+id/stopButton"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:text="@string/stopButton"
         android:textSize="30sp"
         android:typeface="monospace"
@@ -39,31 +39,6 @@
         android:hint="Set the Classification Time Interval" /><![CDATA[]]>
 
     <Button
-        android:id="@+id/syncButton"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="@string/syncbutton"
-        android:textSize="30sp"
-        android:typeface="monospace"
-        android:layout_below="@+id/stopButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp" />
-
-
-    <Button
-        android:id="@+id/filterButton"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="@string/filterButton"
-        android:textSize="30sp"
-        android:typeface="monospace"
-        android:layout_below="@+id/syncButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp" />
-
-    <Button
         android:id="@+id/mapsButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -72,7 +47,7 @@
         android:typeface="monospace"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/filterButton"
+        android:layout_below="@+id/stopButton"
         android:layout_marginTop="18dp"
         />
 
@@ -86,6 +61,7 @@
         android:layout_below="@+id/mapsButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp" />
+        android:layout_marginTop="18dp"
+        android:visibility="invisible" />
 
 </RelativeLayout>

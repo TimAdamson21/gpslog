@@ -39,11 +39,12 @@ public class MainActivity extends Activity {
 
     final int FALSE = 0;
     final int TRUE = 1;
+    final int UNSTARTED = 0;
+    final int WAITINGFORDATA = 1;
+    final int STARTED = 2;
 
     Button startButton;
     Button stopButton;
-    Button syncButton;
-    Button filterButton;
     Button mapsButton;
     Button svmButton;
 
@@ -56,6 +57,7 @@ public class MainActivity extends Activity {
     HMMClassifier hmmClassifier;
     SVMClassifier svmClassifier;
     int lastHiddenState = 3; //It starts at 3 so that the first data point will always send
+    int startStatus = UNSTARTED;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +72,6 @@ public class MainActivity extends Activity {
 
         startButton = (Button) findViewById(R.id.startButton);
         stopButton = (Button) findViewById(R.id.stopButton);
-        syncButton = (Button) findViewById(R.id.syncButton);
-        filterButton = (Button) findViewById(R.id.filterButton);
         mapsButton = (Button) findViewById(R.id.mapsButton);
         svmButton = (Button) findViewById(R.id.svmButton);
 
@@ -82,9 +82,27 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
+                switch (startStatus) {
+                    case UNSTARTED:
+                        startButton.setText(R.string.waiting_to_start);
+                        startStatus = WAITINGFORDATA;
+                        db.removeColumn("tracks","TableId");
+                        db.addColumn("tracks","TripID","INTEGER");
+                        mylocman.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, myloclist);
+                        break;
+                    case WAITINGFORDATA:
+                        mylocman.removeUpdates(myloclist);
+                        startButton.setText(R.string.startButton);
+                        startStatus = UNSTARTED;
+                        break;
+                    case STARTED:
+                        mylocman.removeUpdates(myloclist);
+                        syncSQLiteMySQLDB();
+                        startButton.setText(R.string.startButton);
+                        startStatus = UNSTARTED;
+                        break;
+                }
 
-                Message("starting gps");
-                mylocman.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, myloclist);
             }
         });
 
@@ -97,22 +115,6 @@ public class MainActivity extends Activity {
 
                 Intent dbmanager = new Intent(getApplicationContext(), AndroidDatabaseManager.class);
                 startActivity(dbmanager);
-            }
-        });
-
-        syncButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                syncSQLiteMySQLDB();
-            }
-        });
-
-        filterButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                filterPoints();
             }
         });
 
@@ -172,9 +174,12 @@ public class MainActivity extends Activity {
             int hiddenState = hmmClassifier.getHiddenState(loc.getSpeed());
             int toSend = determineToSend(lastHiddenState, hiddenState, time);
             lastHiddenState = hiddenState;
-            db.insertRow(time, loc.getLatitude(), loc.getLongitude(), loc.getSpeed(), android.os.Build.SERIAL, hiddenState, toSend);
+            db.insertRow(time, loc.getLatitude(), loc.getLongitude(),
+                    loc.getSpeed(), android.os.Build.SERIAL, hiddenState, toSend);
             Message("Data Inserted  Latitude:  " + lat + " Longitude: " + log + " Speed: " + speed + " Serial " + android.os.Build.SERIAL + "time: " + time);
 
+            startButton.setText(R.string.started);
+            startStatus = STARTED;
         }
 
         public void onProviderDisabled(String provider) {
@@ -261,6 +266,9 @@ public class MainActivity extends Activity {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    //Goes through all the Tracks in the database and uses HMM to determine whether or not to send
+    //the point. It then sets the toSend column of that track to either 0(false), or 1(true) depending
+    //on whether or not it decides to send that point
     private void filterPoints(){
         System.out.println("We are filtering the points");
         ArrayList<Track> tracks =(ArrayList)db.getAllTracks();

@@ -72,6 +72,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(ADD_COLUMN);
     }
 
+    public void removeColumn(String tableName, String colName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String ADD_COLUMN = "ALTER TABLE " + tableName + " DROP " +colName + ";";
+        db.execSQL(ADD_COLUMN);
+    }
+
 	public void insertRow(String time, Double latitude, Double longitude, Float speed, String serial, int state, int toSend) {
 		SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
