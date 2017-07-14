@@ -68,7 +68,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(ADD_COLUMN);
     }
 
-	public void insertRow(String time, Double latitude, Double longitude, Float speed, String serial, int state, int toSend) {
+	public void insertRow(String time, Double latitude, Double longitude,
+                          Float speed, String serial, int state, int toSend, long tripID) {
 		SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("time", time);
@@ -79,6 +80,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("serial", serial);
         values.put("hiddenState", state);
         values.put("toSend", toSend);
+        values.put("TripID", tripID);
         
         db.insert("tracks", null, values);
         db.close(); 
@@ -92,13 +94,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CHANGE_TIME);
     }
 
-    public int getLastHiddenState(){
-        String selectQuery = "SELECT hiddenState FROM tracks ORDER BY time DESC LIMIT 1";
+    //Selects the largest trip id in the data base, in order to augment by one
+    //If all the table ids are null, this method will return 0
+    public int getLastTripID(){
+        int lastTrip = 0;
+        String selectQuery = "SELECT TripID FROM tracks ORDER BY TripID DESC LIMIT 1";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-
-        return 0;
-
+        if(cursor.moveToFirst()) {
+            String largestTripId = cursor.getString(0);
+            if (largestTripId != null) {
+                lastTrip = Integer.parseInt(largestTripId);
+            }
+        }
+        else {
+            System.out.print("The table is empty, but that should be fine");
+        }
+        return  lastTrip;
     }
 
 	public List<Track> getAllTracks() {
@@ -203,6 +215,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				map.put("serial", cursor.getString(5));
                 map.put("hidden_state", cursor.getString(6));
                 map.put("toSend", cursor.getString(7));
+                map.put("TripID", cursor.getString(8));
 				
 				//System.out.print( "inside JSON file first data " + cursor.getString(0) + " Second data " + cursor.getString(1) + " third data " + cursor.getString(2) + " fourth data " + cursor.getString(3)+ " fifth data" + cursor.getString(4));
                 trackList.add(map);

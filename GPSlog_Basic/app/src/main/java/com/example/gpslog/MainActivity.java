@@ -17,6 +17,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,6 +59,7 @@ public class MainActivity extends Activity {
     SVMClassifier svmClassifier;
     int lastHiddenState = 3; //It starts at 3 so that the first data point will always send
     int startStatus = UNSTARTED;
+    private long tripId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,7 @@ public class MainActivity extends Activity {
                     case UNSTARTED:
                         startButton.setText(R.string.waiting_to_start);
                         startStatus = WAITINGFORDATA;
+                        tripId = db.getLastTripID() + 1;
                         mylocman.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, myloclist);
                         break;
                     case WAITINGFORDATA:
@@ -172,9 +175,8 @@ public class MainActivity extends Activity {
             int hiddenState = hmmClassifier.getHiddenState(loc.getSpeed());
             int toSend = determineToSend(lastHiddenState, hiddenState, time);
             lastHiddenState = hiddenState;
-            long tripID = 0;
             db.insertRow(time, loc.getLatitude(), loc.getLongitude(),
-                    loc.getSpeed(), android.os.Build.SERIAL, hiddenState, toSend, tripID);
+                    loc.getSpeed(), android.os.Build.SERIAL, hiddenState, toSend, tripId);
             Message("Data Inserted  Latitude:  " + lat + " Longitude: " + log + " Speed: " + speed + " Serial " + android.os.Build.SERIAL + "time: " + time);
 
             startButton.setText(R.string.started);
