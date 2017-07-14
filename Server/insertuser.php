@@ -18,7 +18,7 @@ $devicesData = json_decode($json,true); //This is for android
 
 function addData($id,$data){
     global $db, $jsonResponse;
-    $newgpslog_id = $db->storeData( $id, $data['time'], $data['latitude'], $data['longitude'], $data['speed'], $data['hidden_state'], $data['toSend'] );
+    $newgpslog_id = $db->storeData( $id, $data['time'], $data['latitude'], $data['longitude'], $data['speed'], $data['hidden_state'], $data['toSend'], $data['TripID'] );
         if ( $newgpslog_id )
         {
             ////echo '<p>gps data added:'.$newgpslog_id.'</p>';

@@ -42,10 +42,10 @@ class DB_Functions {
         }
     }
 
-    public function storeData($device_id, $created_at, $latitude, $longitude, $speed = '', $hidden_state, $toSend) {
+    public function storeData($device_id, $created_at, $latitude, $longitude, $speed = '', $hidden_state, $toSend, $TripID) {
 
-        $query = "INSERT INTO `gpslog` (`device_id`, `created_at`, `latitude`, `longitude`, `speed`, `hidden_state`, `real_time_to_send`) "
-                . " VALUES ({$device_id}, '{$created_at}','{$latitude}','{$longitude}', '{$speed}', '{$hidden_state}', '{$toSend}' )";
+        $query = "INSERT INTO `gpslog` (`device_id`, `created_at`, `latitude`, `longitude`, `speed`, `hidden_state`, `real_time_to_send`, `TripID`) "
+                . " VALUES ({$device_id}, '{$created_at}','{$latitude}','{$longitude}', '{$speed}', '{$hidden_state}', '{$toSend}', '{$TripID}' )";
         ////echo '<p>New Gpsdata query:'.$query.'</p>';
         $result = mysqli_query($this->con, $query);
         if ($result) {
