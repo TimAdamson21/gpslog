@@ -86,6 +86,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); 
 	}
 
+    public long getTracksNumRows(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String numRowsQuery = "SELECT COUNT(*) FROM tracks";
+        Cursor cursor = db.rawQuery(numRowsQuery, null);
+        if(cursor.moveToFirst()){
+            return cursor.getLong(0);
+        }
+        else{
+            return -1;
+        }
+    }
+
     public void setToSend(String time, int toSend){
         SQLiteDatabase db = this.getWritableDatabase();
         String CHANGE_TIME = "UPDATE tracks" +
@@ -111,6 +123,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             System.out.print("The table is empty, but that should be fine");
         }
         return  lastTrip;
+    }
+
+    public List<String> getTripIDs(){
+        List<String> ret = new ArrayList<String>();
+        return ret;
     }
 
 	public List<Track> getAllTracks() {

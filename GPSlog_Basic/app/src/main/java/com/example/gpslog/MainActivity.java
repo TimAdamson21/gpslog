@@ -43,6 +43,8 @@ public class MainActivity extends Activity {
     final int UNSTARTED = 0;
     final int WAITINGFORDATA = 1;
     final int STARTED = 2;
+    //TODO Change these to an enum
+
 
     Button startButton;
     Button stopButton;
@@ -112,7 +114,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                mylocman.removeUpdates(myloclist);
+                //mylocman.removeUpdates(myloclist);
 
                 Intent dbmanager = new Intent(getApplicationContext(), AndroidDatabaseManager.class);
                 startActivity(dbmanager);
@@ -177,8 +179,9 @@ public class MainActivity extends Activity {
             lastHiddenState = hiddenState;
             db.insertRow(time, loc.getLatitude(), loc.getLongitude(),
                     loc.getSpeed(), android.os.Build.SERIAL, hiddenState, toSend, tripId);
-            Message("Data Inserted  Latitude:  " + lat + " Longitude: " + log + " Speed: " + speed + " Serial " + android.os.Build.SERIAL + "time: " + time);
-
+            Message("Data Inserted  Latitude:  " + lat + " Longitude: " + log + " Speed: " + speed +
+                    " Serial " + android.os.Build.SERIAL + "time: " + time + " and the tracks table has "+
+            db.getTracksNumRows() + " rows");
             startButton.setText(R.string.started);
             startStatus = STARTED;
         }

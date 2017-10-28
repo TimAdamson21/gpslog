@@ -103,5 +103,6 @@ public class HMMClassifier implements Serializable, XmlParserList{
     public static final int ACCELERATION = 1;
     public static final int FREEFLOW = 2;
     public static final int STOPPED = 0;
+    //TODO find out if this can be made into enum
 
 }

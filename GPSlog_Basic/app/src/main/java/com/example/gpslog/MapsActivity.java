@@ -2,6 +2,8 @@ package com.example.gpslog;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,11 +14,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private DatabaseHandler db;
+    private Spinner trips_spinner;
     final int zoomLevel = 15;
 
     @Override
@@ -67,4 +71,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Track lastTrack = userList.get(userList.size()-1);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lastTrack.latitude,lastTrack.longitude),zoomLevel));
     }
+ ////////////// The stuff bellow this line is still in the dev phase
+    public void addItemsOnSpinner(){
+        //trips_spinner = (Spinner) findViewById(R.id.trips_spinner);
+        List<String> list = db.getTripIDs();
+        list.add("list 1");
+        list.add("list 2");
+        list.add("list 3");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //trips_spinner.setAdapter(dataAdapter);
+    }
+
 }
