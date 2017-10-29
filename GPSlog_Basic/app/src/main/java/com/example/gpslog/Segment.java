@@ -12,6 +12,8 @@ import java.util.Date;
  * Created by timad on 7/7/2017.
  */
 
+// A Segment contains the pertenant features of a set of tracks that have a hidden state 
+// of either ACCELERATION or STOPPED
 public class Segment {
 
     private int numStops;
@@ -23,6 +25,7 @@ public class Segment {
     private long maxSingleStop;
     private long totStopTime;
 
+    // Creates a generic Segment with all the attributes set to 0
     public Segment(){
         numStops = 0;
         segTimeLength = 0;
@@ -33,6 +36,8 @@ public class Segment {
         totStopTime = 0;
     }
 
+    // This constructor takes in a an ArrayList of Tracks and uses them to set the features of 
+    // the Segment
     public Segment(ArrayList<Track> tracks){
         this();
         try {
@@ -43,16 +48,20 @@ public class Segment {
         }
     }
 
-
+    // Uses the ArrayList of Tracks passed in to set the features of the Segment
+    // Precondition: All the tracks have been classified and given a hiddenState
+    // Throws a ParseException if the SimpleDateFormat can not parse the time in the Tracks
     public void setFeatures(ArrayList<Track> tracks) throws ParseException {
 
         setSegTimeLength(tracks);
         setDistanceTraveled(tracks);
 
-        boolean stopped = false;
+        boolean isStopped = false;
         boolean hasStopped = false;
+        double maxPeek = 0.0;
         Date beginningStopTime = new Date();
 
+        // TODO: Make sure that this loop sets everything as required
         for (int i = 1; i < tracks.size(); i++) {
             Track currTrack = tracks.get(i);
             int currHiddenState = currTrack.hiddenState;
@@ -62,16 +71,20 @@ public class Segment {
                 maxSpeed = currTrack.speed;
             }
 
+            if(currHiddenState == HMMClassifier.STOPPED){
+                peekSpeed = maxPeek;
+            }
+
             if (currHiddenState == HMMClassifier.STOPPED &&
                     prevHiddenState == HMMClassifier.ACCELERATION) {
                 numStops++;
-                stopped = true;
+                isStopped = true;
                 hasStopped = true;
                 beginningStopTime = df.parse(currTrack.time);
 
             } else if (currHiddenState == HMMClassifier.ACCELERATION &&
                     prevHiddenState == HMMClassifier.STOPPED) {
-                stopped = false;
+                isStopped = false;
                 long stoppedTime = df.parse(currTrack.time).getTime() - beginningStopTime.getTime();
                 totStopTime += stoppedTime;
                 if(stoppedTime > maxSingleStop){
@@ -79,30 +92,37 @@ public class Segment {
                 }
             }
 
-            if (hasStopped && currTrack.speed > peekSpeed) {
-                peekSpeed = currTrack.speed;
+            if (hasStopped && currHiddenState == HMMClassifier.ACCELERATION) {
+                if(currTrack.speed > maxSpeed){
+                    maxSpeed = currTrack.speed;
+                }
             }
 
         }
 
     }
 
+    // Returns the number of stops made
     public int getNumStops() {
         return numStops;
     }
 
+    // Sets teh number of stops made
     public void setNumStops(int numStops) {
         this.numStops = numStops;
     }
 
+    // Returns the time length of the Segment
     public long getSegTimeLength() {
         return segTimeLength;
     }
 
+    // Sets the time length of the Segment to be the long passed in
     public void setSegTimeLength(long segTimeLength) {
         this.segTimeLength = segTimeLength;
     }
 
+    // Sets the time length of the Segment from the ArrayList of tracks passed in
     private void setSegTimeLength(ArrayList<Track> tracks) throws ParseException {
         Date time1 = new Date();
         Date time2 = new Date();
@@ -111,14 +131,17 @@ public class Segment {
         segTimeLength = time2.getTime() - time1.getTime();
     }
 
+    // Returns the distance traveled in meters
     public double getDistanceTraveled() {
         return distanceTraveled;
     }
 
+    // Sets the distance traveled to be the double passed in
     public void setDistanceTraveled(double distanceTraveled) {
         this.distanceTraveled = distanceTraveled;
     }
 
+    // Sets the distance traveled from the ArrayList of tracks passed in
     private void setDistanceTraveled(ArrayList<Track> tracks){
         Location startLoc = new Location("");
         Track firstTrack = tracks.get(0);
@@ -132,34 +155,42 @@ public class Segment {
         distanceTraveled = lastLoc.distanceTo(startLoc);
     }
 
+    // Returns the peek speed of the Segment
     public double getPeekSpeed() {
         return peekSpeed;
     }
 
+    // Sets the peek speed of the segment to be the double passed in
     public void setPeekSpeed(double peekSpeed) {
         this.peekSpeed = peekSpeed;
     }
 
+    // Returns the max speed of the Segment
     public double getMaxSpeed() {
         return maxSpeed;
     }
 
+    // Sets the max speed of the Segment to be the double passed in
     public void setMaxSpeed(double maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 
+    // Returns the longest stop time of the Segment
     public double getMaxSingleStop() {
         return maxSingleStop;
     }
 
+    // Sets the longest stop time of the Segment to be the long passed in
     public void setMaxSingleStop(long maxSingleStop) {
         this.maxSingleStop = maxSingleStop;
     }
 
+    // Returns the total number of stops for this Segment
     public double getTotStopTime() {
         return totStopTime;
     }
 
+    // Sets the total number of stops for this Segment to be the long passed in
     public void setTotStopTime(long totStopTime) {
         this.totStopTime = totStopTime;
     }

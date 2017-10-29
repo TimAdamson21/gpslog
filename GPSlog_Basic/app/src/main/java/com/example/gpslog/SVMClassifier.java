@@ -5,7 +5,6 @@ package com.example.gpslog;
  */
 
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import libsvm.*;
 
@@ -64,7 +63,6 @@ public class SVMClassifier {
                 isSegment = false;
                 segments.add(new Segment(segTracks));
                 segTracks.clear();
-
             }
             if(isSegment){
                 segTracks.add(tracks.get(i));
