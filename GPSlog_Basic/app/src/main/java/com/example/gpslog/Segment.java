@@ -19,8 +19,8 @@ public class Segment {
     private int numStops;
     private long segTimeLength;
     private double distanceTraveled;
-    //TODO correctly implement peekSpeed
-    private double peekSpeed; //Not correctly implemented
+    //TODO correctly implement peakSpeed
+    private double peakSpeed; //Not correctly implemented
     private double maxSpeed;
     private long maxSingleStop;
     private long totStopTime;
@@ -30,7 +30,7 @@ public class Segment {
         numStops = 0;
         segTimeLength = 0;
         distanceTraveled = 0.0;
-        peekSpeed = 0.0;
+        peakSpeed = 0.0;
         maxSpeed = 0.0;
         maxSingleStop = 0;
         totStopTime = 0;
@@ -72,7 +72,7 @@ public class Segment {
             }
 
             if(currHiddenState == HMMClassifier.STOPPED){
-                peekSpeed = maxPeek;
+                peakSpeed = maxPeek;
             }
 
             if (currHiddenState == HMMClassifier.STOPPED &&
@@ -155,14 +155,14 @@ public class Segment {
         distanceTraveled = lastLoc.distanceTo(startLoc);
     }
 
-    // Returns the peek speed of the Segment
+    // Returns the peak speed of the Segment
     public double getPeekSpeed() {
-        return peekSpeed;
+        return peakSpeed;
     }
 
-    // Sets the peek speed of the segment to be the double passed in
-    public void setPeekSpeed(double peekSpeed) {
-        this.peekSpeed = peekSpeed;
+    // Sets the peak speed of the segment to be the double passed in
+    public void setPeekSpeed(double peakSpeed) {
+        this.peakSpeed = peakSpeed;
     }
 
     // Returns the max speed of the Segment
