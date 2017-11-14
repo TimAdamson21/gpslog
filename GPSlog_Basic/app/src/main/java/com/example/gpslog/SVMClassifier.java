@@ -50,13 +50,13 @@ public class SVMClassifier {
     // Each Segment will have characteristic features that can be used by SVM
     private ArrayList<Segment> getSegments(){
 
-        ArrayList<Track> tracks= (ArrayList<Track>)dbh.getAllTracks();
+        ArrayList<Track> tracks = (ArrayList<Track>)dbh.getAllTracks();
         ArrayList<Segment> segments = new ArrayList<>();
         ArrayList<Track> segTracks = new ArrayList<>();
         boolean isSegment = false;
 
         //Makes a decision based on whether a segment is active, and if the current track is FreeFlow
-        for(int i = 0; i <= tracks.size(); i++){
+        for(int i = 0; i < tracks.size(); i++){
             if (isSegment && tracks.get(i).hiddenState == HMMClassifier.FREEFLOW) {
                 isSegment = false;
                 segments.add(new Segment(segTracks));
