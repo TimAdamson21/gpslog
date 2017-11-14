@@ -57,15 +57,15 @@ public class SVMClassifier {
 
         //Makes a decision based on whether a segment is active, and if the current track is FreeFlow
         for(int i = 0; i <= tracks.size(); i++){
-            if (isSegment == true && tracks.get(i).hiddenState == HMMClassifier.FREEFLOW) {
+            if (isSegment && tracks.get(i).hiddenState == HMMClassifier.FREEFLOW) {
                 isSegment = false;
                 segments.add(new Segment(segTracks));
                 segTracks.clear();
             }
-            else if (isSegment == true && tracks.get(i).hiddenState != HMMClassifier.FREEFLOW) {
+            else if (isSegment && tracks.get(i).hiddenState != HMMClassifier.FREEFLOW) {
                 segTracks.add(tracks.get(i));
             }
-            else if (isSegment == false && tracks.get(i).hiddenState != HMMClassifier.FREEFLOW) {
+            else if (!isSegment && tracks.get(i).hiddenState != HMMClassifier.FREEFLOW) {
                 isSegment = true;
                 segTracks.add(tracks.get(i));
             }
