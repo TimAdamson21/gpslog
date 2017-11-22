@@ -4,6 +4,7 @@ package com.example.gpslog;
  * Created by timad on 6/28/2017.
  */
 
+import android.util.Log;
 import android.widget.Toast;
 import java.util.ArrayList;
 import libsvm.*;
@@ -56,16 +57,16 @@ public class SVMClassifier {
         boolean isSegment = false;
 
         //Makes a decision based on whether a segment is active, and if the current track is FreeFlow
-        for(int i = 0; i <= tracks.size(); i++){
-            if (isSegment == true && tracks.get(i).hiddenState == HMMClassifier.FREEFLOW) {
+        for(int i = 0; i < tracks.size(); i++){
+            if (isSegment && (tracks.get(i).hiddenState == HMMClassifier.FREEFLOW || i == tracks.size()-1)) {
                 isSegment = false;
                 segments.add(new Segment(segTracks));
                 segTracks.clear();
             }
-            else if (isSegment == true && tracks.get(i).hiddenState != HMMClassifier.FREEFLOW) {
+            else if (isSegment && tracks.get(i).hiddenState != HMMClassifier.FREEFLOW) {
                 segTracks.add(tracks.get(i));
             }
-            else if (isSegment == false && tracks.get(i).hiddenState != HMMClassifier.FREEFLOW) {
+            else if (!isSegment && tracks.get(i).hiddenState != HMMClassifier.FREEFLOW) {
                 isSegment = true;
                 segTracks.add(tracks.get(i));
             }
