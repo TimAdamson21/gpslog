@@ -1,6 +1,7 @@
 package com.example.gpslog;
 
 import android.location.Location;
+import android.util.Log;
 
 import java.lang.reflect.Array;
 import java.text.ParseException;
@@ -19,11 +20,14 @@ public class Segment {
     // These are the 5 features that will be passed to SVM
     private double stopsWRTime;
     private double stopsWRSpace;
+    private double peakSpeedWRMaxSpeed;
+    private double maxSingleStopWRTime;
+    private double totStopTimeWRTime;
+
+    // These are extra features for calculation and analysis purposes
     private double peakSpeed;
     private long maxSingleStop;
     private long totStopTime;
-
-    // These are extra features for calculation and analysis purposes
     private double avgAcc;
     private double avgSpeed;
     private int numStops;
@@ -35,6 +39,9 @@ public class Segment {
 
         stopsWRTime = 0.0;
         stopsWRSpace = 0.0;
+        peakSpeedWRMaxSpeed = 0.0;
+        maxSingleStopWRTime = 0;
+        totStopTimeWRTime = 0;
         peakSpeed = 0.0;
         maxSingleStop = 0;
         totStopTime = 0;
@@ -83,15 +90,15 @@ public class Segment {
             numStops++;
         }
 
+        //Analyzes a track and notates its features depending on the state of the car
         for (int i = 1; i < tracks.size(); i++) {
             prevTrack = currTrack;
             currTrack = tracks.get(i);
             if (currTrack.speed > maxSpeed) {
                 maxSpeed = currTrack.speed;
             }
-
-            //Car comes to a stop
-            if (!isStopped && currTrack.hiddenState == HMMClassifier.STOPPED) {
+            //Car begins a stop
+            if (!isStopped && tracks.get(i).hiddenState == HMMClassifier.STOPPED) {
                 isStopped = true;
                 hasStopped = false;
                 currAcc = 0.0;
@@ -99,14 +106,12 @@ public class Segment {
                 numStops++;
                 beginStopIndex = i;
             }
-
             //Car continues accelerating
             else if (!isStopped && currTrack.hiddenState == HMMClassifier.ACCELERATION) {
                 currAcc = (currTrack.speed - prevTrack.speed) / (trackTimeDiff(currTrack, prevTrack));
                 currSpd = currTrack.speed;
             }
-
-            //Car starts accelerating
+            //Car begins accelerating
             else if (isStopped && currTrack.hiddenState == HMMClassifier.ACCELERATION) {
                 isStopped = false;
                 hasStopped = true;
@@ -118,11 +123,12 @@ public class Segment {
                     maxSingleStop = currentStopTime;
                 }
             }
-
-            //Car stays stopped
+            //Car continues a stop
             else if (isStopped && currTrack.hiddenState == HMMClassifier.STOPPED) {
                 currAcc = 0.0;
                 currSpd = 0.0;
+            } else {
+                Log.d("Error", "Car state not properly set");
             }
 
             //Note that acceleration for track[0] can't be calculated; it is not included in the avg
@@ -133,6 +139,10 @@ public class Segment {
             }
         }
 
+        //Set helper features
+        setPeakSpeed(peakSpeed);
+        setMaxSingleStop(maxSingleStop);
+        setTotStopTime(totStopTime);
         setAvgAcc(accSum / tracks.size());
         setAvgSpeed(speedsSum / tracks.size());
         setNumStops(numStops);
@@ -140,11 +150,12 @@ public class Segment {
         setDistanceTraveled(trackDist(tracks.get(0), tracks.get(tracks.size()-1)));
         setMaxSpeed(maxSpeed);
 
+        //Set SVM Features
         setStopsWRTime(numStops, segTimeLength);
         setStopsWRSpace(numStops, distanceTraveled);
-        setPeakSpeed(peakSpeed);
-        setMaxSingleStop(maxSingleStop);
-        setTotStopTime(totStopTime);
+        setPeakSpeedWRMaxSpeed(peakSpeed, maxSpeed);
+        setMaxSingleStopWRTime(maxSingleStop, segTimeLength);
+        setTotStopTimeWRTime(totStopTime, segTimeLength);
     }
 
     // Returns the time passed between two tracks in milliseconds
@@ -171,9 +182,9 @@ public class Segment {
         return stopsWRTime;
     }
 
-    // Sets the stops WR time to be the double passed in
+    // Sets the stops WR time based on the values passed in
     public void setStopsWRTime(int stops, long time) {
-        if (stops != 0 && time != 0) {
+        if (time != 0) {
             this.stopsWRTime = stops / time;
         }
         else {
@@ -186,13 +197,58 @@ public class Segment {
         return stopsWRSpace;
     }
 
-    // Sets the stops WR distance to be the double passed in
+    // Sets the stops WR distance based on the values passed in
     public void setStopsWRSpace(int stops, double distance) {
-        if (stops != 0 && distance != 0) {
+        if (distance != 0) {
             this.stopsWRSpace = stops / distance;
         }
         else {
             this.stopsWRSpace = 0.0;
+        }
+    }
+
+    // Returns the Peak Speed WR to the Max Speed of the Segment
+    public double getPeakSpeedWRMaxSpeed() {
+        return peakSpeedWRMaxSpeed;
+    }
+
+    // Sets the Peak Speed WR to Max Speed based on the values passed in
+    public void setPeakSpeedWRMaxSpeed(double peakSpeed, double maxSpeed) {
+        if (peakSpeed != 0 && maxSpeed != 0) {
+            this.peakSpeedWRMaxSpeed = peakSpeed / maxSpeed;
+        }
+        else {
+            this.peakSpeedWRMaxSpeed = 0.0;
+        }
+    }
+
+    // Returns the Max Single Stop Time WR to the length of the Segment
+    public double getMaxSingleStopWRTime() {
+        return maxSingleStopWRTime;
+    }
+
+    // Sets the Max Single Stop WR to Time based on the values passed in
+    public void setMaxSingleStopWRTime(long maxSingleStop, long segTimeLength) {
+        if (maxSingleStop != 0 && segTimeLength != 0) {
+            this.maxSingleStopWRTime = maxSingleStop / segTimeLength;
+        }
+        else {
+            this.maxSingleStopWRTime = 0.0;
+        }
+    }
+
+    // Returns the Total Stopped Time WR to the Total Time
+    public double getTotStopTimeWRTime() {
+        return totStopTimeWRTime;
+    }
+
+    //Sets the total stopped time WR to time based on the values passed in
+    public void setTotStopTimeWRTime(long totStopTime, long segTimeLength) {
+        if (totStopTime != 0 && segTimeLength != 0) {
+            this.totStopTimeWRTime = totStopTime / segTimeLength;
+        }
+        else {
+            this.totStopTimeWRTime = 0.0;
         }
     }
 
