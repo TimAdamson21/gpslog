@@ -4,6 +4,7 @@ package com.example.gpslog;
  * Created by timad on 6/28/2017.
  */
 
+import android.util.Log;
 import android.widget.Toast;
 import java.util.ArrayList;
 import libsvm.*;
@@ -49,25 +50,26 @@ public class SVMClassifier {
     // where the Track's hidden state is either ACCELERATION or STOPPED
     // Each Segment will have characteristic features that can be used by SVM
     private ArrayList<Segment> getSegments(){
+
         ArrayList<Track> tracks= (ArrayList<Track>)dbh.getAllTracks();
         ArrayList<Segment> segments = new ArrayList<>();
-        boolean isSegment = false;
         ArrayList<Track> segTracks = new ArrayList<>();
-        for(int i = 1; i < tracks.size(); i++){
-            if((tracks.get(i - 1).hiddenState == HMMClassifier.FREEFLOW &&
-                    tracks.get(i).hiddenState == HMMClassifier.ACCELERATION) ||i == 1){
-                isSegment = true;
-            }
-            else if((isSegment && tracks.get(i).hiddenState == HMMClassifier.FREEFLOW) ||
-                    i == tracks.size() -1 ){
+        boolean isSegment = false;
+
+        //Makes a decision based on whether a segment is active, and if the current track is FreeFlow
+        for(int i = 0; i < tracks.size(); i++){
+            if (isSegment && (tracks.get(i).hiddenState == HMMClassifier.FREEFLOW || i == tracks.size()-1)) {
                 isSegment = false;
                 segments.add(new Segment(segTracks));
                 segTracks.clear();
             }
-            if(isSegment){
+            else if (isSegment && tracks.get(i).hiddenState != HMMClassifier.FREEFLOW) {
                 segTracks.add(tracks.get(i));
             }
-
+            else if (!isSegment && tracks.get(i).hiddenState != HMMClassifier.FREEFLOW) {
+                isSegment = true;
+                segTracks.add(tracks.get(i));
+            }
         }
         return segments;
     }
