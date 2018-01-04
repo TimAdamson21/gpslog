@@ -157,9 +157,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * used in AndroidDatabaseManager
-     * @return
+     * @return ArrayList<Cursor>
+     * Returns an ArrayList      
      */
-	
 	public ArrayList<Cursor> getData(String Query){
 		//get writable database
 		SQLiteDatabase sqlDB = this.getWritableDatabase();
