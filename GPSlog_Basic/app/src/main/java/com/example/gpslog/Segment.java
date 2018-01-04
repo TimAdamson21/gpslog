@@ -12,7 +12,7 @@ import java.util.Date;
  * Created by timad on 7/7/2017.
  */
 
-// A Segment contains the pertenant features of a set of tracks that have a hidden state 
+// A Segment contains the pertinent features of a set of tracks that have a hidden state
 // of either ACCELERATION or STOPPED
 public class Segment {
 
@@ -25,7 +25,7 @@ public class Segment {
     private long maxSingleStop;
     private long totStopTime;
 
-    // Creates a generic Segment with all the attributes set to 0
+    // Creates a generic Segment with all the features/fields set to 0
     public Segment(){
         numStops = 0;
         segTimeLength = 0;

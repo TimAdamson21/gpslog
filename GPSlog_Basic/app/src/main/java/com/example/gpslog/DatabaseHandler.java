@@ -28,6 +28,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 	@Override
+    // Creates an SQLite "tracks" table with the names and types found in the String literal.
 	public void onCreate(SQLiteDatabase db) {
         String CREATE_TRACKS_TABLE = "CREATE TABLE tracks (" +
         		"time TEXT ," +
@@ -44,6 +45,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		
 	}
 
+    // Creates a "tracks" table with the standard database
+    // The table created will have the names and types found in the onCreate String literal
     public void OnCreateWithStandardDatabase(){
         SQLiteDatabase db = this.getWritableDatabase();
         onCreate(db);
@@ -52,22 +55,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 	@Override
+    // Drops the existing "tracks" table if there is one, and then creates a new "tracks" table
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS tracks");
         onCreate(db);
 	}
 
+    // Drops the "tracks" table of the standard database if there is one, and adds a new "tracks" table
     public void standardOnUpgrade() {
         SQLiteDatabase db = this.getWritableDatabase();
         onUpgrade(db, 0, 0);
     }
 
+    // Accepts as parameters the name of the table to add a column to, and
+    // the new column's name and type
+    // Adds the column to the standard database
     public void addColumn(String tableName, String colName, String type){
         SQLiteDatabase db = this.getWritableDatabase();
         String ADD_COLUMN = "ALTER TABLE " + tableName + " ADD " +colName + " " + type;
         db.execSQL(ADD_COLUMN);
     }
 
+    // Adds an entry to the standard database "tracks" table with the column values set to
+    // be the parameters passed in. The updateStatus will initially be set to "no" because the
+    // database has yet to be synced with the server
 	public void insertRow(String time, Double latitude, Double longitude,
                           Float speed, String serial, int state, int toSend, long tripID) {
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -86,6 +97,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); 
 	}
 
+    // Returns the number of rows contained in the "tracks" table
+    // Returns -1 if there is no tracks table
     public long getTracksNumRows(){
         SQLiteDatabase db = this.getWritableDatabase();
         String numRowsQuery = "SELECT COUNT(*) FROM tracks";
@@ -98,6 +111,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
+    // Sets the "toSend" value of the track with the specified time to toSend integer passed in
     public void setToSend(String time, int toSend){
         SQLiteDatabase db = this.getWritableDatabase();
         String CHANGE_TIME = "UPDATE tracks" +
@@ -125,11 +139,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return  lastTrip;
     }
 
+    // Returns a list of TripIDs
+    //TODO finish implementing this method so that we can display the various trips on the map
     public List<String> getTripIDs(){
         List<String> ret = new ArrayList<String>();
         return ret;
     }
 
+    // Returns a List of all the tracks in the standard database "tracks" table
 	public List<Track> getAllTracks() {
 	    List<Track> trackList = new ArrayList<Track>();
         String selectQuery = "SELECT latitude, longitude, speed, time, hiddenState, toSend FROM tracks";
@@ -155,11 +172,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return trackList;
     }
 
-    /**
-     * used in AndroidDatabaseManager
-     * @return ArrayList<Cursor>
-     * Returns an ArrayList      
-     */
+
+     // Returns an ArrayList of Cursors that contain the results of executing the Query on
+     // the standard database, and any error messages that result from the Query execution
 	public ArrayList<Cursor> getData(String Query){
 		//get writable database
 		SQLiteDatabase sqlDB = this.getWritableDatabase();
@@ -244,10 +259,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return gson.toJson(trackList);
     }
     
-    /**
-     * Get SQLite records that are yet to be Synced
-     * @return
-     */
+
+    // Returns the number of tracks that are yet to be synced
     public int dbSyncCount(){
         int count = 0;
         String selectQuery = "SELECT  * FROM tracks where updateStatus = '"+"no"+"'";
@@ -259,7 +272,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     } //TODO Improve method to use SELECT COUNT(*)
     
     /**
-     * Update Sync status against each User ID
+     * Update the sync status of the track that has the the time passed in to be the status String passed in
      */
     public void updateSyncStatus(String time, String status){
         SQLiteDatabase database = this.getWritableDatabase();     
