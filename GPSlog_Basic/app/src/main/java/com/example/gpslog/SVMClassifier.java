@@ -23,22 +23,18 @@ public class SVMClassifier {
         param = new svm_parameter();
         model = new svm_model();
 
-        param.kernel_type = svm_parameter.POLY;
-        //param.svm_type = null;
-        param.degree = 10;
-        //param.gamma = null;
-        //param.coef0 = null;
+        param.kernel_type = svm_parameter.POLY; //Polynomial kernel: (gamma*u'*v + coef0)^degree
+        param.svm_type = 0; //C-SVC multi-class classification
+        param.degree = 3; //Pre-Trained params with 90% accuracy on NYC data
+        param.gamma = 0.8;
+        param.coef0 = 10;
 
-        model.param = param;
-        //model.nr_class = null;
-        //model.l = null;
-        model.SV = null;
-        model.sv_coef = null;
-        model.rho = null;
-        model.probA = null;
-        model.probB = null;
-        model.sv_indices = null;
-
+        model.param = param; //Params from above
+        model.nr_class = 2; // Number of classes
+        model.l = 69; // Number of Support Vectors
+        model.rho = new double[]{-0.174707}; // Constants in decision functions
+        model.label = new int[]{0, 1}; // 0=stopngo, 1=notstopngo
+        model.nSV = new int[]{34, 35}; // Number of each category in the training data
     }
 
     // Marks the Tracks that are stop and go as being "stop and go" in the data table
