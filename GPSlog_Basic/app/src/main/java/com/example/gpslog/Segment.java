@@ -17,6 +17,9 @@ import java.util.Date;
 // of either ACCELERATION or STOPPED
 public class Segment {
 
+    // This will determine whether the tracks in the Segment are sent
+    public boolean toSend;
+
     // These are the 5 features that will be passed to SVM
     private double stopsWRTime;
     private double stopsWRSpace;
@@ -58,7 +61,7 @@ public class Segment {
     public Segment(ArrayList<Track> tracks){
         this();
         try {
-            setFeatures(tracks);
+            this.setFeatures(tracks);
         }
         catch (ParseException e){
             System.err.println("ParseException: " + e.getMessage());
@@ -152,6 +155,7 @@ public class Segment {
 
         //Set SVM Features
         setStopsWRTime(numStops, segTimeLength);
+        Log.i("Segment", "" + String.valueOf(stopsWRTime));
         setStopsWRSpace(numStops, distanceTraveled);
         setPeakSpeedWRMaxSpeed(peakSpeed, maxSpeed);
         setMaxSingleStopWRTime(maxSingleStop, segTimeLength);
@@ -184,8 +188,9 @@ public class Segment {
 
     // Sets the stops WR time based on the values passed in
     public void setStopsWRTime(int stops, long time) {
-        if (time != 0) {
-            this.stopsWRTime = stops / time;
+        double stopsD = stops;
+        if (time != 0 && stopsD != 0) {
+            this.stopsWRTime = stopsD / time;
         }
         else {
             this.stopsWRTime = 0.0;
@@ -199,7 +204,7 @@ public class Segment {
 
     // Sets the stops WR distance based on the values passed in
     public void setStopsWRSpace(int stops, double distance) {
-        if (distance != 0) {
+        if (distance != 0 && stops != 0) {
             this.stopsWRSpace = stops / distance;
         }
         else {
@@ -229,8 +234,10 @@ public class Segment {
 
     // Sets the Max Single Stop WR to Time based on the values passed in
     public void setMaxSingleStopWRTime(long maxSingleStop, long segTimeLength) {
-        if (maxSingleStop != 0 && segTimeLength != 0) {
-            this.maxSingleStopWRTime = maxSingleStop / segTimeLength;
+        double maxSingleStopD = maxSingleStop;
+
+        if (maxSingleStopD != 0 && segTimeLength != 0) {
+            this.maxSingleStopWRTime = maxSingleStopD / segTimeLength;
         }
         else {
             this.maxSingleStopWRTime = 0.0;
@@ -244,8 +251,9 @@ public class Segment {
 
     //Sets the total stopped time WR to time based on the values passed in
     public void setTotStopTimeWRTime(long totStopTime, long segTimeLength) {
-        if (totStopTime != 0 && segTimeLength != 0) {
-            this.totStopTimeWRTime = totStopTime / segTimeLength;
+        double totStopTimeD = totStopTime;
+        if (totStopTimeD != 0 && segTimeLength != 0) {
+            this.totStopTimeWRTime = totStopTimeD / segTimeLength;
         }
         else {
             this.totStopTimeWRTime = 0.0;
