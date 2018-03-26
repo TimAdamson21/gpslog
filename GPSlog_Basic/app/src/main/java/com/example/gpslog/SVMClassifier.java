@@ -4,47 +4,72 @@ package com.example.gpslog;
  * Created by timad on 6/28/2017.
  */
 
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Log;
-import android.widget.Toast;
+
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import libsvm.*;
+
 
 // This class is used to classify stop and go segments using the svm algorithm
 public class SVMClassifier {
 
-    svm_parameter param;
-    svm_model model;
     DatabaseHandler dbh;
+    Context myContext;
+    svm_model model;
+    BufferedReader br;
 
-    // The constructor sets the model, and the svm parameters, as well as the databasehandler passed in
-    public SVMClassifier(DatabaseHandler dbh){
-
+    // Constructor sets dbh and context for asset use from what is passed into the SVMClassifier
+    public SVMClassifier(DatabaseHandler dbh, Context context){
         this.dbh = dbh;
-        param = new svm_parameter();
-        model = new svm_model();
-
-        param.kernel_type = svm_parameter.POLY; //Polynomial kernel: (gamma*u'*v + coef0)^degree
-        param.svm_type = 0; //C-SVC multi-class classification
-        param.degree = 3; //Pre-Trained params with 90% accuracy on NYC data
-        param.gamma = 0.8;
-        param.coef0 = 10;
-
-        model.param = param; //Params from above
-        model.nr_class = 2; // Number of classes
-        model.l = 69; // Number of Support Vectors
-        model.rho = new double[]{-0.174707}; // Constants in decision functions
-        model.label = new int[]{0, 1}; // 0=stopngo, 1=notstopngo
-        model.nSV = new int[]{34, 35}; // Number of each category in the training data
+        this.myContext = context;
     }
 
-    // Marks the Tracks that are stop and go as being "stop and go" in the data table
-    public void classifyStopAndGo(){
+    // Runs the classifier and assigns a value to each track in the database as 0=notstopngo 1=stopngo
+    public void classifyStopAndGo() {
+
+        // Load model file as a buffered reader then pass it to svm_load: Runtime error will occur on svm_predict if either exception occurs
+        try {
+            AssetManager assetManager = myContext.getAssets();
+            br = new BufferedReader(new InputStreamReader(assetManager.open("trainedmodel.model"), "UTF-8"));
+            this.model = svm.svm_load_model(br);
+        } catch(FileNotFoundException ex) {
+            ex.printStackTrace();
+            Log.e("Model Asset Error", "FileNotFound");
+        } catch(IOException ex) {
+            ex.printStackTrace();
+            Log.e("Model Asset Error", "IOException");
+        }
+
+        // Collect segments from database handler
         ArrayList<Segment> segments = getSegments();
+
+        /** Create an array of node Arrays called allSegmentNodes, to be passed to svm_predict.
+        Each segmentNodes array represents the characteristic features of a segment.
+        This process is necessary to set up the data such that it can be read by the svm library **/
+        svm_node[][] allSegmentNodes = new svm_node[segments.size()][5];
+        for (int i = 0; i < segments.size(); i++) {
+            svm_node[] segmentNodes = createSegmentNodeArray(segments.get(i));
+            allSegmentNodes[i] = segmentNodes;
+        }
+
+        // Predict each node in allSegmentNodes and store the prediction in predictedValues array
+        double[] predictedValues = new double[segments.size()]; //:TODO Put this in a separate thread to improve performance?
+        for (int i = 0; i < allSegmentNodes.length; i++) {
+            predictedValues[i] = svm.svm_predict(model, allSegmentNodes[i]);
+        }
+
+        // Alter the database to reflect which tracks are stop and go
+        updateDatabase(predictedValues, this.dbh);
     }
 
-    // Returns an array of Segments, which are distinct parts of the trip
-    // where the Track's hidden state is either ACCELERATION or STOPPED
-    // Each Segment will have characteristic features that can be used by SVM
+    /** Returns an array of Segments from the database, which are distinct parts of the trip
+    The Track's hidden state is either ACCELERATION or STOPPED
+    Each Segment will have characteristic features that can be used by SVM **/
     private ArrayList<Segment> getSegments(){
 
         ArrayList<Track> tracks= (ArrayList<Track>)dbh.getAllTracks();
@@ -70,4 +95,27 @@ public class SVMClassifier {
         return segments;
     }
 
+    // Returns an svm node from index/value passed
+    private svm_node createSvmNode(int index, double value) {
+        svm_node node = new svm_node();
+        node.index = index;
+        node.value = value;
+        return node;
+    };
+
+    // Creates an array of nodes that represent the soft-normalized values of the segment passed in
+    private svm_node[] createSegmentNodeArray(Segment segment) {
+        svm_node[] nodeArray = new svm_node[5];
+        nodeArray[0] = createSvmNode(1, segment.getStopsWRTime());
+        nodeArray[1] = createSvmNode(2, segment.getStopsWRSpace());
+        nodeArray[2] = createSvmNode(3, segment.getPeakSpeedWRMaxSpeed());
+        nodeArray[3] = createSvmNode(4, segment.getMaxSingleStopWRTime());
+        nodeArray[4] = createSvmNode(5, segment.getTotStopTimeWRTime());
+        return nodeArray;
+    }
+
+    private void updateDatabase(double[] predictions, DatabaseHandler dbh) {
+        System.out.println(Arrays.toString(predictions));
+        //TODO: Complete this method
+    }
 }

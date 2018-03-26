@@ -155,7 +155,6 @@ public class Segment {
 
         //Set SVM Features
         setStopsWRTime(numStops, segTimeLength);
-        Log.i("Segment", "" + String.valueOf(stopsWRTime));
         setStopsWRSpace(numStops, distanceTraveled);
         setPeakSpeedWRMaxSpeed(peakSpeed, maxSpeed);
         setMaxSingleStopWRTime(maxSingleStop, segTimeLength);
