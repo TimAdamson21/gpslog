@@ -72,7 +72,7 @@ public class MainActivity extends Activity {
         db = new DatabaseHandler(this);
 
         hmmClassifier = new HMMClassifier();
-        svmClassifier = new SVMClassifier(db);
+        svmClassifier = new SVMClassifier(db, getApplicationContext());
 
         startButton = (Button) findViewById(R.id.startButton);
         stopButton = (Button) findViewById(R.id.stopButton);
